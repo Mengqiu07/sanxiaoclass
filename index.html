@@ -1,1483 +1,655 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>向明中学计算机社 · 招新特刊</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800;900&family=Rajdhani:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap">
-  <style>
-    :root {
-      --bg: #020810;
-      --card-bg: rgba(8, 18, 40, 0.75);
-      --card-hover: rgba(10, 24, 52, 0.9);
-      --primary: #00e5ff;
-      --accent: #ff4081;
-      --accent2: #69f0ae;
-      --text: #d0d8e8;
-      --text-dim: #8899bb;
-      --border: rgba(0, 229, 255, 0.15);
-      --glow: rgba(0, 229, 255, 0.3);
-    }
-
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'Noto Sans SC', 'Rajdhani', sans-serif;
-      min-height: 100vh;
-      overflow-x: hidden;
-      line-height: 1.7;
-    }
-
-    /* Container */
-    .container {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 30px 20px 60px;
-      position: relative;
-      z-index: 1;
-    }
-
-    /* ===== SCROLL REVEAL (disabled animations) ===== */
-    .reveal {
-      opacity: 1;
-      transform: none;
-    }
-
-    /* ===== HERO ===== */
-    .hero {
-      text-align: center;
-      padding: 80px 20px 60px;
-      position: relative;
-    }
-
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 24px;
-      border: 1px solid var(--primary);
-      border-radius: 25px;
-      color: var(--primary);
-      font-family: 'Orbitron', sans-serif;
-      font-size: 13px;
-      letter-spacing: 4px;
-      margin-bottom: 30px;
-      animation: badgeGlow 2s ease-in-out infinite;
-      background: rgba(0, 229, 255, 0.05);
-    }
-
-    .hero-badge .dot {
-      width: 7px; height: 7px;
-      background: var(--primary);
-      border-radius: 50%;
-      animation: dotPulse 1.5s ease-in-out infinite;
-      box-shadow: 0 0 10px var(--primary);
-    }
-
-    @keyframes dotPulse {
-      0%, 100% { opacity: 0.4; transform: scale(1); }
-      50% { opacity: 1; transform: scale(1.5); }
-    }
-
-    @keyframes badgeGlow {
-      0%, 100% { box-shadow: 0 0 10px rgba(0,212,255,0.2); }
-      50% { box-shadow: 0 0 35px rgba(0,212,255,0.5), 0 0 60px rgba(0,212,255,0.1); }
-    }
-
-    .hero h1 {
-      font-family: 'Orbitron', sans-serif;
-      font-size: clamp(32px, 6vw, 56px);
-      font-weight: 900;
-      background: linear-gradient(135deg, #00d4ff 0%, #ff6ec7 35%, #7bff5a 70%, #00d4ff 100%);
-      background-size: 300% auto;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      animation: gradientShift 3s ease infinite;
-      margin-bottom: 20px;
-      line-height: 1.2;
-      filter: drop-shadow(0 0 20px rgba(0, 212, 255, 0.3));
-    }
-
-    @keyframes gradientShift {
-      0%, 100% { background-position: 0% center; }
-      50% { background-position: 100% center; }
-    }
-
-    .hero-subtitle {
-      font-family: 'Rajdhani', 'Noto Sans SC', sans-serif;
-      font-size: 22px;
-      font-weight: 600;
-      color: var(--accent);
-      letter-spacing: 6px;
-      text-shadow: 0 0 20px rgba(255,110,199,0.5);
-      margin-bottom: 16px;
-    }
-
-    .hero-tagline {
-      font-size: 16px;
-      color: var(--text-dim);
-      letter-spacing: 2px;
-    }
-
-    /* ===== STATS BAR ===== */
-    .stats-bar {
-      display: flex;
-      justify-content: center;
-      gap: 32px;
-      margin: 40px 0;
-      flex-wrap: wrap;
-    }
-
-    .stat-item {
-      text-align: center;
-      min-width: 90px;
-    }
-
-    .stat-num {
-      font-family: 'Orbitron', monospace;
-      font-size: 36px;
-      font-weight: 900;
-      color: var(--primary);
-      text-shadow: 0 0 20px rgba(0, 229, 255, 0.5);
-      line-height: 1;
-    }
-
-    .stat-num .plus {
-      color: var(--accent2);
-      font-size: 24px;
-    }
-
-    .stat-label {
-      font-size: 12px;
-      color: var(--text-dim);
-      letter-spacing: 3px;
-      margin-top: 8px;
-      text-transform: uppercase;
-    }
-
-    /* ===== SECTION ===== */
-    .section {
-      margin-top: 50px;
-    }
-
-    .section-header {
-      text-align: center;
-      margin-bottom: 36px;
-      position: relative;
-    }
-
-    .section-header h2 {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 28px;
-      font-weight: 800;
-      color: var(--primary);
-      text-transform: uppercase;
-      letter-spacing: 5px;
-      text-shadow: 0 0 20px var(--glow);
-      display: inline-block;
-      position: relative;
-      padding: 0 40px;
-    }
-
-    .section-header h2::before,
-    .section-header h2::after {
-      content: '';
-      position: absolute;
-      top: 50%;
-      width: 50px;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, var(--primary));
-    }
-    .section-header h2::before { left: -35px; }
-    .section-header h2::after { right: -35px; background: linear-gradient(90deg, var(--primary), transparent); }
-
-    .section-subtitle {
-      font-size: 13px;
-      color: var(--text-dim);
-      letter-spacing: 3px;
-      margin-top: 6px;
-    }
-
-    /* ===== TRACK CARDS ===== */
-    .track-grid {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-      margin-top: 24px;
-    }
-
-    .track-card {
-      display: flex;
-      align-items: center;
-      gap: 28px;
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 28px 32px;
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      transition: all 0.45s cubic-bezier(0.22, 1, 0.36, 1);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .track-card::after {
-      content: '';
-      position: absolute;
-      right: -40px;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 120px; height: 120px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(0, 229, 255, 0.06), transparent 70%);
-      pointer-events: none;
-      transition: all 0.45s ease;
-    }
-
-    .track-card:hover::after {
-      width: 200px; height: 200px;
-      opacity: 1;
-    }
-
-    .track-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 3px;
-      background: linear-gradient(90deg, var(--primary), var(--accent), var(--accent2));
-      opacity: 0;
-      transition: opacity 0.4s ease;
-    }
-
-    .track-card:hover {
-      transform: translateY(-8px);
-      border-color: rgba(0,212,255,0.5);
-      box-shadow: 0 20px 50px rgba(0,212,255,0.12), 0 0 0 1px rgba(255,255,255,0.04) inset;
-      background: var(--card-hover);
-    }
-
-    .track-card:hover::before { opacity: 1; }
-
-    .track-img {
-      flex-shrink: 0;
-      width: 130px;
-      height: 130px;
-      border-radius: 14px;
-      object-fit: cover;
-      border: 2px solid var(--border);
-      transition: all 0.4s ease;
-      filter: brightness(0.9);
-    }
-
-    .track-card:hover .track-img {
-      border-color: rgba(0,212,255,0.6);
-      filter: brightness(1.1);
-      box-shadow: 0 0 25px rgba(0, 212, 255, 0.2);
-    }
-
-    .track-body {
-      flex: 1;
-      min-width: 0;
-    }
-
-    .track-icon {
-      font-size: 32px;
-      margin-bottom: 8px;
-    }
-
-    .track-card h3 {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 19px;
-      font-weight: 700;
-      color: var(--primary);
-      letter-spacing: 2px;
-      margin-bottom: 10px;
-    }
-
-    .track-card p {
-      font-size: 14px;
-      color: var(--text);
-      line-height: 1.9;
-    }
-
-    .track-card .tech-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 12px;
-    }
-
-    .tech-tag {
-      padding: 5px 14px;
-      border: 1px solid rgba(0,212,255,0.3);
-      border-radius: 16px;
-      font-size: 11px;
-      color: var(--primary);
-      font-family: 'Rajdhani', monospace;
-      letter-spacing: 1px;
-      background: rgba(0,212,255,0.06);
-      transition: all 0.3s ease;
-    }
-
-    .track-card:hover .tech-tag {
-      border-color: rgba(0,212,255,0.5);
-      background: rgba(0,212,255,0.1);
-    }
-
-    @media (max-width: 600px) {
-      .track-card {
-        flex-direction: column;
-        text-align: center;
-        padding: 24px 20px;
-      }
-      .track-img {
-        width: 100%;
-        height: 180px;
-      }
-    }
-
-    /* ===== LEVEL CARDS ===== */
-    .level-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
-      margin-top: 24px;
-    }
-
-    @media (max-width: 640px) {
-      .level-grid { grid-template-columns: 1fr; }
-    }
-
-    .level-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 36px 28px;
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      transition: all 0.45s cubic-bezier(0.22, 1, 0.36, 1);
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .level-card::after {
-      content: '';
-      position: absolute;
-      bottom: -30px; right: -30px;
-      width: 100px; height: 100px;
-      border-radius: 50%;
-      transition: all 0.45s ease;
-    }
-
-    .level-card.beginner { border-color: rgba(123, 255, 90, 0.25); }
-    .level-card.beginner::after { background: radial-gradient(circle, rgba(123, 255, 90, 0.08), transparent 70%); }
-    .level-card.advanced { border-color: rgba(255, 110, 199, 0.25); }
-    .level-card.advanced::after { background: radial-gradient(circle, rgba(255, 110, 199, 0.08), transparent 70%); }
-
-    .level-card:hover {
-      transform: translateY(-6px);
-    }
-
-    .level-card.beginner:hover { border-color: rgba(123, 255, 90, 0.6); box-shadow: 0 15px 40px rgba(123,255,90,0.12); background: var(--card-hover); }
-    .level-card.advanced:hover { border-color: rgba(255, 110, 199, 0.6); box-shadow: 0 15px 40px rgba(255,110,199,0.12); background: var(--card-hover); }
-
-    .level-icon { font-size: 48px; margin-bottom: 14px; transition: transform 0.4s ease; }
-    .level-card:hover .level-icon { transform: scale(1.15); }
-
-    .level-card h3 {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 19px;
-      font-weight: 700;
-      margin-bottom: 14px;
-      letter-spacing: 3px;
-    }
-
-    .beginner h3 { color: var(--accent2); text-shadow: 0 0 10px rgba(105, 240, 174, 0.3); }
-    .advanced h3 { color: var(--accent); text-shadow: 0 0 10px rgba(255, 64, 129, 0.3); }
-
-    .level-card p {
-      font-size: 14px;
-      color: var(--text);
-      line-height: 1.9;
-    }
-
-    /* ===== ADVANTAGES ===== */
-    .adv-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-      gap: 18px;
-      margin-top: 24px;
-    }
-
-    .adv-item {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 28px 20px;
-      text-align: center;
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .adv-item::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at 50% 0%, rgba(0, 229, 255, 0.06), transparent 60%);
-      opacity: 0;
-      transition: opacity 0.4s ease;
-    }
-
-    .adv-item:hover {
-      border-color: rgba(0,212,255,0.5);
-      transform: translateY(-4px);
-      box-shadow: 0 12px 35px rgba(0, 212, 255, 0.1);
-      background: var(--card-hover);
-    }
-
-    .adv-item:hover::before { opacity: 1; }
-
-    .adv-icon { font-size: 36px; margin-bottom: 12px; transition: transform 0.35s ease; }
-    .adv-item:hover .adv-icon { transform: scale(1.2); }
-    .adv-item p { font-size: 13px; color: var(--text); line-height: 1.8; }
-
-    /* ===== CTA ===== */
-    .cta-section {
-      text-align: center;
-      margin-top: 24px;
-      padding: 48px 24px;
-      background: var(--card-bg);
-      border: 2px solid var(--border);
-      border-radius: 20px;
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .cta-section::before {
-      content: '';
-      position: absolute;
-      top: -50%; left: -50%;
-      width: 200%; height: 200%;
-      background: conic-gradient(from 0deg, transparent, rgba(0,212,255,0.04), transparent, rgba(255,110,199,0.04), transparent, rgba(105, 240, 174, 0.04), transparent);
-      animation: rotateBg 12s linear infinite;
-    }
-
-    @keyframes rotateBg {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-    }
-
-    .cta-content { position: relative; z-index: 1; }
-
-    .cta-section h2 {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 32px;
-      font-weight: 900;
-      color: #fff;
-      margin-bottom: 14px;
-      text-shadow: 0 0 25px rgba(0,212,255,0.5);
-    }
-
-    .cta-section .cta-text {
-      font-size: 17px;
-      color: var(--accent);
-      letter-spacing: 2px;
-      margin-bottom: 28px;
-      text-shadow: 0 0 10px rgba(255, 64, 129, 0.3);
-    }
-
-    .cta-btn {
-      display: inline-block;
-      padding: 16px 50px;
-      font-family: 'Orbitron', sans-serif;
-      font-size: 17px;
-      font-weight: 700;
-      letter-spacing: 3px;
-      color: #000;
-      background: linear-gradient(135deg, #00d4ff, #7bff5a);
-      border: none;
-      border-radius: 35px;
-      cursor: pointer;
-      text-decoration: none;
-      transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-      box-shadow: 0 0 35px rgba(0,212,255,0.4);
-      position: relative;
-      animation: ctaPulse 2.5s ease-in-out infinite;
-    }
-
-    @keyframes ctaPulse {
-      0%, 100% { box-shadow: 0 0 35px rgba(0,212,255,0.4); }
-      50% { box-shadow: 0 0 65px rgba(0,212,255,0.7), 0 0 100px rgba(123, 255, 90, 0.3); }
-    }
-
-    .cta-btn:hover {
-      transform: scale(1.08);
-      box-shadow: 0 0 70px rgba(0,212,255,0.7), 0 0 120px rgba(123, 255, 90, 0.4);
-      animation: none;
-    }
-
-    /* ===== SIDEBAR TAGS ===== */
-    .side-tags {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 14px;
-      margin-top: 36px;
-      padding: 24px;
-    }
-
-    .side-tag {
-      padding: 10px 22px;
-      border: 1px solid rgba(255,110,199,0.35);
-      border-radius: 22px;
-      font-size: 13px;
-      color: var(--accent);
-      letter-spacing: 2px;
-      font-family: 'Rajdhani', 'Noto Sans SC', sans-serif;
-      font-weight: 600;
-      background: rgba(255, 110, 199, 0.04);
-      transition: all 0.3s ease;
-    }
-
-    .side-tag:hover {
-      border-color: var(--accent);
-      background: rgba(255, 110, 199, 0.12);
-      text-shadow: 0 0 10px rgba(255, 64, 129, 0.5);
-      transform: translateY(-2px);
-    }
-
-    /* ===== FOOTER ===== */
-    .footer {
-      text-align: center;
-      padding: 40px 20px 20px;
-      color: var(--text-dim);
-      font-size: 12px;
-      letter-spacing: 2px;
-    }
-
-    /* ===== WEIXIN MODAL ===== */
-    .weixin-modal {
-      display: none;
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0, 0, 0, 0.8);
-      z-index: 10000;
-      align-items: center;
-      justify-content: center;
-      backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
-      animation: fadeIn 0.3s ease;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    .weixin-modal-content {
-      background: var(--card-bg);
-      border: 2px solid var(--border);
-      border-radius: 20px;
-      padding: 32px;
-      text-align: center;
-      max-width: 500px;
-      width: 90%;
-      box-shadow: 0 25px 80px rgba(0, 212, 255, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.05) inset;
-      position: relative;
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      animation: modalSlideIn 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-
-    @keyframes modalSlideIn {
-      from { opacity: 0; transform: translateY(30px) scale(0.95); }
-      to { opacity: 1; transform: translateY(0) scale(1); }
-    }
-
-    .weixin-modal-content h3 {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 20px;
-      color: var(--primary);
-      letter-spacing: 3px;
-      margin-bottom: 20px;
-      text-shadow: 0 0 15px var(--glow);
-    }
-
-    .weixin-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 18px;
-    }
-
-    .weixin-item {
-      text-align: center;
-      transition: transform 0.3s ease;
-    }
-
-    .weixin-item:hover {
-      transform: translateY(-3px);
-    }
-
-    .weixin-item img {
-      width: 100%;
-      aspect-ratio: 1;
-      border-radius: 12px;
-      border: 2px solid var(--border);
-      object-fit: cover;
-      transition: all 0.3s ease;
-    }
-
-    .weixin-item:hover img {
-      border-color: rgba(0, 212, 255, 0.6);
-      box-shadow: 0 8px 25px rgba(0, 212, 255, 0.2);
-    }
-
-    .weixin-item .weixin-name {
-      font-size: 12px;
-      color: var(--text-dim);
-      margin-top: 8px;
-      letter-spacing: 1px;
-    }
-
-    .weixin-modal-close {
-      display: inline-block;
-      margin-top: 22px;
-      padding: 10px 32px;
-      font-size: 14px;
-      letter-spacing: 2px;
-      color: var(--text-dim);
-      border: 1px solid var(--border);
-      border-radius: 22px;
-      cursor: pointer;
-      background: transparent;
-      transition: all 0.3s ease;
-      font-family: 'Rajdhani', 'Noto Sans SC', sans-serif;
-    }
-
-    .weixin-modal-close:hover {
-      color: #fff;
-      border-color: var(--primary);
-      background: rgba(0, 212, 255, 0.12);
-      box-shadow: 0 0 20px rgba(0, 212, 255, 0.15);
-    }
-
-    /* ===== ARTICLE MODAL ===== */
-    .article-modal {
-      display: none;
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0, 0, 0, 0.85);
-      z-index: 10001;
-      align-items: center;
-      justify-content: center;
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      animation: fadeIn 0.3s ease;
-    }
-
-    .article-modal-content {
-      background: var(--card-bg);
-      border: 2px solid var(--border);
-      border-radius: 20px;
-      padding: 36px;
-      max-width: 680px;
-      width: 90%;
-      max-height: 85vh;
-      overflow-y: auto;
-      box-shadow: 0 25px 80px rgba(0, 212, 255, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.05) inset;
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      animation: modalSlideIn 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-
-    .article-modal-content .article-full-meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-bottom: 20px;
-      font-size: 12px;
-      color: var(--text-dim);
-      letter-spacing: 1px;
-    }
-
-    .article-modal-content .article-full-meta span {
-      padding: 4px 12px;
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      font-family: 'Rajdhani', 'Noto Sans SC', sans-serif;
-    }
-
-    .article-modal-content h3 {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 22px;
-      font-weight: 800;
-      color: #fff;
-      letter-spacing: 2px;
-      margin-bottom: 18px;
-      text-shadow: 0 0 15px var(--glow);
-    }
-
-    .article-modal-content .article-full-body {
-      font-size: 15px;
-      color: var(--text);
-      line-height: 2;
-      margin-bottom: 24px;
-    }
-
-    .article-modal-close {
-      display: inline-block;
-      padding: 10px 32px;
-      font-size: 14px;
-      letter-spacing: 2px;
-      color: var(--text-dim);
-      border: 1px solid var(--border);
-      border-radius: 22px;
-      cursor: pointer;
-      background: transparent;
-      transition: all 0.3s ease;
-      font-family: 'Rajdhani', 'Noto Sans SC', sans-serif;
-    }
-
-    .article-modal-close:hover {
-      color: #fff;
-      border-color: var(--primary);
-      background: rgba(0, 212, 255, 0.12);
-      box-shadow: 0 0 20px rgba(0, 212, 255, 0.15);
-    }
-
-    /* ===== NAV TABS ===== */
-    .nav-tabs {
-      display: flex;
-      justify-content: center;
-      gap: 0;
-      margin: 50px 0 30px;
-      position: relative;
-      z-index: 2;
-    }
-
-    .nav-tab {
-      padding: 14px 40px;
-      font-family: 'Orbitron', 'Rajdhani', sans-serif;
-      font-size: 15px;
-      font-weight: 700;
-      letter-spacing: 3px;
-      color: var(--text-dim);
-      background: rgba(8, 18, 40, 0.5);
-      border: 1px solid rgba(0, 229, 255, 0.1);
-      cursor: pointer;
-      transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-      position: relative;
-      text-decoration: none;
-      display: inline-block;
-    }
-
-    .nav-tab:first-child {
-      border-radius: 30px 0 0 30px;
-      border-right: none;
-    }
-
-    .nav-tab:last-child {
-      border-radius: 0 30px 30px 0;
-      border-left: none;
-    }
-
-    .nav-tab:hover {
-      color: var(--primary);
-      background: rgba(0, 229, 255, 0.08);
-      border-color: rgba(0, 229, 255, 0.35);
-    }
-
-    .nav-tab.active {
-      color: #000;
-      background: linear-gradient(135deg, #00d4ff, #69f0ae);
-      border-color: transparent;
-      box-shadow: 0 0 30px rgba(0, 212, 255, 0.4);
-    }
-
-    /* ===== TAB PANEL ===== */
-    .tab-panel {
-      display: none;
-    }
-
-    .tab-panel.active {
-      display: block;
-    }
-
-    /* ===== ARTICLES ===== */
-    .article-grid {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-      margin-top: 24px;
-    }
-
-    .article-card {
-      display: flex;
-      align-items: flex-start;
-      gap: 24px;
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 24px 28px;
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-      position: relative;
-      overflow: hidden;
-      cursor: pointer;
-    }
-
-    .article-card::after {
-      content: '';
-      position: absolute;
-      left: 0; top: 0;
-      width: 4px; height: 100%;
-      background: linear-gradient(180deg, var(--primary), var(--accent));
-      opacity: 0;
-      transition: opacity 0.4s ease;
-      pointer-events: none;
-    }
-
-    .article-card:hover {
-      transform: translateX(6px);
-      border-color: rgba(0, 212, 255, 0.45);
-      box-shadow: 0 12px 35px rgba(0, 212, 255, 0.1);
-      background: var(--card-hover);
-    }
-
-    .article-card:hover::after { opacity: 1; }
-
-    .article-date {
-      flex-shrink: 0;
-      text-align: center;
-      padding: 10px 16px;
-      background: rgba(0, 229, 255, 0.08);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      min-width: 60px;
-      transition: all 0.35s ease;
-    }
-
-    .article-card:hover .article-date {
-      border-color: rgba(0, 212, 255, 0.5);
-      background: rgba(0, 229, 255, 0.12);
-    }
-
-    .article-date .day {
-      font-family: 'Orbitron', monospace;
-      font-size: 28px;
-      font-weight: 900;
-      color: var(--primary);
-      line-height: 1;
-    }
-
-    .article-date .month {
-      font-size: 11px;
-      color: var(--text-dim);
-      letter-spacing: 2px;
-      margin-top: 4px;
-      text-transform: uppercase;
-    }
-
-    .article-body { flex: 1; min-width: 0; }
-
-    .article-card h4 {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 16px;
-      font-weight: 700;
-      color: #fff;
-      letter-spacing: 1px;
-      margin-bottom: 8px;
-    }
-
-    .article-card .article-excerpt {
-      font-size: 13px;
-      color: var(--text-dim);
-      line-height: 1.7;
-    }
-
-    .article-card .article-meta {
-      display: flex;
-      gap: 14px;
-      margin-top: 10px;
-      font-size: 11px;
-      color: var(--text-dim);
-      letter-spacing: 1px;
-    }
-
-    .article-card .article-meta span {
-      display: flex;
-      align-items: center;
-      gap: 4px;
-    }
-
-    @media (max-width: 600px) {
-      .article-card {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 14px;
-      }
-      .article-date {
-        flex-direction: row;
-        gap: 8px;
-        align-items: baseline;
-      }
-    }
-
-    /* ===== ARTICLE SEARCH ===== */
-    .article-search {
-      position: relative;
-      max-width: 480px;
-      margin: 0 auto 28px;
-    }
-
-    .article-search input {
-      width: 100%;
-      padding: 14px 48px 14px 20px;
-      font-size: 14px;
-      font-family: 'Rajdhani', 'Noto Sans SC', sans-serif;
-      color: var(--text);
-      background: rgba(8, 18, 40, 0.6);
-      border: 1px solid var(--border);
-      border-radius: 30px;
-      outline: none;
-      transition: all 0.35s ease;
-      letter-spacing: 1px;
-    }
-
-    .article-search input::placeholder {
-      color: var(--text-dim);
-      letter-spacing: 2px;
-    }
-
-    .article-search input:focus {
-      border-color: var(--primary);
-      box-shadow: 0 0 25px rgba(0, 212, 255, 0.2);
-      background: rgba(8, 18, 40, 0.85);
-    }
-
-    .article-search-icon {
-      position: absolute;
-      right: 16px;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 18px;
-      color: var(--text-dim);
-      pointer-events: none;
-      transition: color 0.3s ease;
-    }
-
-    .article-search input:focus ~ .article-search-icon {
-      color: var(--primary);
-    }
-
-    .article-no-result {
-      display: none;
-      text-align: center;
-      padding: 40px 20px;
-      color: var(--text-dim);
-      font-size: 14px;
-      letter-spacing: 2px;
-    }
-
-    /* ===== PARTICLES ===== */
-    #particles-canvas {
-      position: fixed;
-      top: 0; left: 0;
-      z-index: 0;
-      pointer-events: none;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>平时成绩保卫战</title>
+<link rel="stylesheet" href="stylesheet.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Noto Sans SC',sans-serif;overflow:hidden;user-select:none;background:#2c1810;width:100vw;height:100vh}
+#game-container{width:100vw;height:100vh;position:relative;overflow:hidden}
+
+/* 教室背景 */
+#classroom{position:absolute;inset:0;background:linear-gradient(180deg,#f5e6c8 0%,#e8d5a3 100%)}
+#classroom .floor{position:absolute;bottom:0;left:0;right:0;height:40%;background:linear-gradient(180deg,rgba(180,150,100,0.4) 0%,#8B7355 60%,#6B5340 100%)}
+#classroom .wall-back{position:absolute;top:0;left:0;right:0;height:60%;background:linear-gradient(180deg,#faf0d7 0%,#f0e4c0 100%)}
+#classroom .blackboard{position:absolute;top:8%;left:50%;transform:translateX(-50%);width:55%;height:28%;background:linear-gradient(180deg,#2d5a27 0%,#1a3a15 100%);border:14px solid #8B7355;border-radius:6px;box-shadow:0 8px 30px rgba(0,0,0,0.3),inset 0 2px 10px rgba(0,0,0,0.2)}
+#classroom .blackboard::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,0.03) 0%,transparent 50%,rgba(0,0,0,0.05) 100%)}
+#classroom .blackboard-text{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);color:rgba(255,255,255,0.35);font-size:clamp(16px,3vw,32px);font-weight:700;letter-spacing:8px;white-space:nowrap}
+
+/* 多媒体电脑 */
+#classroom .multimedia{position:absolute;top:38%;left:50%;transform:translateX(-50%);width:clamp(180px,18vw,260px);height:clamp(120px,10vw,160px);z-index:2}
+#classroom .multimedia .screen{width:100%;height:55%;background:linear-gradient(180deg,#1a1a2e 0%,#16213e 100%);border:8px solid #444;border-radius:8px 8px 0 0;position:relative;box-shadow:0 4px 15px rgba(0,0,0,0.4)}
+#classroom .multimedia .screen::after{content:'';position:absolute;inset:4px;background:linear-gradient(135deg,rgba(0,200,255,0.06) 0%,transparent 50%,rgba(0,0,0,0.3) 100%);border-radius:3px}
+#classroom .multimedia .stand{width:30%;height:45%;background:linear-gradient(180deg,#555 0%,#333 100%);margin:0 auto;border-radius:0 0 6px 6px;box-shadow:0 2px 8px rgba(0,0,0,0.3)}
+
+/* 老师桌子 */
+#classroom .teacher-desk{position:absolute;top:52%;left:50%;transform:translateX(-50%);width:clamp(200px,22vw,320px);height:clamp(80px,8vw,100px);background:linear-gradient(180deg,#c4956a 0%,#a0724a 100%);border-radius:8px;box-shadow:0 4px 20px rgba(0,0,0,0.3);z-index:3}
+#classroom .teacher-desk::after{content:'';position:absolute;top:4px;left:8px;right:8px;bottom:0;background:linear-gradient(180deg,rgba(255,255,255,0.15) 0%,transparent 30%)}
+
+/* 椅子 */
+#classroom .chair{position:absolute;top:54%;left:calc(50% + 14vw);width:clamp(50px,5vw,70px);height:clamp(70px,7vw,90px);z-index:3}
+#classroom .chair .seat{width:100%;height:40%;background:#8B6914;border-radius:4px;position:absolute;bottom:30%}
+#classroom .chair .backrest{width:16%;height:100%;background:#8B6914;border-radius:3px;position:absolute;left:0;top:0}
+#classroom .chair .legs{position:absolute;bottom:0;left:0;right:0;height:30%}
+#classroom .chair .leg{width:12%;height:100%;background:#6B4914;border-radius:2px;position:absolute}
+#classroom .chair .leg:nth-child(1){left:10%}
+#classroom .chair .leg:nth-child(2){right:10%}
+
+/* 老师人物 - 恶心版 */
+#teacher{position:absolute;top:38%;left:calc(50% + 2vw);z-index:5;transition:all 0.5s ease}
+#teacher .head{width:clamp(44px,5vw,70px);height:clamp(42px,4.8vw,67px);background:#e8c9a0;border-radius:45% 45% 40% 40%;margin:0 auto 2px;position:relative;overflow:visible}
+/* 地中海秃头 */
+#teacher .head .hair{position:absolute;top:0;left:0;right:0;height:55%;background:linear-gradient(180deg,#333 0%,#444 100%);border-radius:0;clip-path:polygon(0 0,25% 0,30% 55%,70% 55%,75% 0,100% 0,100% 60%,0 60%)}
+/* 头顶反光 */
+#teacher .head::before{content:'';position:absolute;top:8%;left:30%;width:40%;height:25%;background:rgba(255,255,200,0.5);border-radius:50%;z-index:2}
+/* 鼻毛 */
+#teacher .head::after{content:'';position:absolute;bottom:30%;left:48%;width:3px;height:8px;background:#222;z-index:3;transform:translateX(-50%) rotate(15deg)}
+#teacher .head .eye{width:8px;height:9px;background:#222;border-radius:50%;position:absolute;top:40%}
+#teacher .head .eye.left{left:25%;width:10px;height:10px}
+#teacher .head .eye.right{right:28%;width:5px;height:6px;top:42%}
+/* 歪嘴大黄牙 */
+#teacher .head .mouth{width:18px;height:10px;border:2px solid #8B4513;background:#8B4513;border-radius:2px 2px 8px 8px;position:absolute;bottom:18%;left:48%;transform:translateX(-50%) rotate(-3deg);overflow:hidden}
+#teacher .head .mouth::after{content:'';position:absolute;top:-2px;left:2px;width:5px;height:4px;background:#ffeaa7;border-radius:1px;box-shadow:7px 0 0 #ffeaa7}
+/* 痘痘 */
+#teacher .head .acne{width:4px;height:4px;background:#c0392b;border-radius:50%;position:absolute}
+/* 啤酒肚身体 */
+#teacher .body-torso{width:clamp(50px,5vw,70px);height:clamp(55px,5.5vw,75px);background:linear-gradient(180deg,#6B8E23 0%,#556B2F 100%);border-radius:30% 30% 8px 8px;margin:0 auto;position:relative}
+#teacher .body-torso .collar{width:55%;height:18%;border-bottom:2px solid #ddd;border-left:2px solid #ddd;border-right:2px solid #ddd;border-radius:0 0 4px 4px;margin:0 auto;position:absolute;top:2px;left:50%;transform:translateX(-50%)}
+/* 汗渍 */
+#teacher .body-torso::after{content:'';position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:30%;height:20%;background:rgba(100,100,100,0.3);border-radius:50%}
+#teacher .arms{position:absolute;top:8px}
+#teacher .arm{width:clamp(18px,2vw,26px);height:clamp(44px,4.5vw,60px);background:#6B8E23;border-radius:10px;position:absolute;top:6px}
+#teacher .arm.left{left:-28px;transform:rotate(12deg)}
+#teacher .arm.right{right:-28px;transform:rotate(-12deg)}
+/* 腋毛 */
+#teacher .arm.left::after{content:'';position:absolute;top:-2px;left:50%;width:8px;height:6px;background:#333;border-radius:50%;transform:translateX(-50%)}
+#teacher .arm.right::after{content:'';position:absolute;top:-2px;left:50%;width:8px;height:6px;background:#333;border-radius:50%;transform:translateX(-50%)}
+/* O型腿 */
+#teacher .legs{display:flex;justify-content:center;gap:8px;margin-top:2px}
+#teacher .leg{width:clamp(18px,2vw,28px);height:clamp(36px,3.5vw,48px);background:#5a4a3a;border-radius:6px 6px 0 0;position:relative}
+#teacher .leg:first-child{transform:rotate(-8deg);transform-origin:top center}
+#teacher .leg:last-child{transform:rotate(8deg);transform-origin:top center}
+
+/* 学生桌子 */
+#classroom .student-desk{position:absolute;bottom:8%;left:50%;transform:translateX(-50%);width:clamp(260px,28vw,420px);height:clamp(60px,6vw,80px);background:linear-gradient(180deg,#d4a574 0%,#b8895a 100%);border-radius:6px;box-shadow:0 4px 20px rgba(0,0,0,0.25);z-index:10}
+#classroom .student-desk::after{content:'';position:absolute;top:3px;left:6px;right:6px;bottom:0;background:linear-gradient(180deg,rgba(255,255,255,0.12) 0%,transparent 25%)}
+#classroom .student-desk .book{position:absolute;top:-12px;right:25%;width:clamp(50px,6vw,80px);height:clamp(36px,3.5vw,45px);background:#f5f5f5;border-radius:3px 8px 8px 3px;border:2px solid #ddd;box-shadow:2px 2px 6px rgba(0,0,0,0.2)}
+
+/* 天花板灯 */
+#classroom .lights{position:absolute;top:3%;left:0;right:0;display:flex;justify-content:space-around;padding:0 15%}
+#classroom .light{width:clamp(60px,7vw,100px);height:14px;background:linear-gradient(180deg,#ffe8c0 0%,#ffd080 50%,#cc9900 100%);border-radius:7px;box-shadow:0 0 30px rgba(255,220,150,0.5)}
+#classroom .window{position:absolute;top:12%;width:clamp(50px,6vw,80px);height:clamp(90px,10vw,130px);background:linear-gradient(180deg,#87CEEB 0%,#5BA3D9 50%,#3d7ea6 100%);border:6px solid #8B7355;border-radius:4px;box-shadow:inset 0 0 15px rgba(255,255,255,0.3)}
+#classroom .window.left{left:4%}
+#classroom .window.right{right:4%}
+#classroom .window::after{content:'';position:absolute;top:0;left:50%;width:3px;height:100%;background:#8B7355;transform:translateX(-50%)}
+#classroom .window::before{content:'';position:absolute;left:0;top:50%;width:100%;height:3px;background:#8B7355}
+
+/* 姓名输入界面 */
+#name-overlay{position:absolute;inset:0;background:rgba(0,0,0,0.6);z-index:100;display:flex;align-items:center;justify-content:center;flex-direction:column}
+#name-overlay.hidden{display:none}
+#name-box{background:rgba(255,255,255,0.95);border-radius:20px;padding:40px 50px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,0.5);animation:popIn 0.5s cubic-bezier(0.22,1,0.36,1)}
+@keyframes popIn{from{transform:scale(0.8);opacity:0}to{transform:scale(1);opacity:1}}
+#name-box h2{font-size:28px;color:#333;margin-bottom:8px}
+#name-box p{color:#888;font-size:14px;margin-bottom:24px}
+#name-input{width:260px;padding:14px 20px;font-size:20px;border:2px solid #ddd;border-radius:12px;text-align:center;outline:none;transition:all 0.3s;font-family:'Noto Sans SC',sans-serif}
+#name-input:focus{border-color:#3a5a8c;box-shadow:0 0 15px rgba(58,90,140,0.2)}
+#name-btn{margin-top:18px;padding:14px 48px;font-size:18px;background:linear-gradient(135deg,#3a5a8c,#2c4a7c);color:#fff;border:none;border-radius:30px;cursor:pointer;letter-spacing:2px;transition:all 0.3s;font-family:'Noto Sans SC',sans-serif}
+#name-btn:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(58,90,140,0.4)}
+
+/* 对话框 - 放在老师头顶 */
+#dialog{position:absolute;top:18%;left:calc(50% + 6vw);transform:translateX(-50%);z-index:50;pointer-events:none;transition:all 0.4s ease}
+#dialog-bubble{background:rgba(255,255,255,0.95);border-radius:16px;padding:18px 26px;max-width:380px;box-shadow:0 8px 30px rgba(0,0,0,0.25);position:relative;font-size:16px;color:#333;line-height:1.7;text-align:center;min-width:160px}
+#dialog-bubble::after{content:'';position:absolute;bottom:-14px;left:50%;transform:translateX(-50%);width:0;height:0;border-left:14px solid transparent;border-right:14px solid transparent;border-top:16px solid rgba(255,255,255,0.95)}
+#dialog-name{font-weight:700;color:#c0392b;margin-bottom:4px;font-size:13px}
+#dialog-text{font-size:16px;color:#333}
+#dialog.hidden{opacity:0;transform:translateX(-50%) translateY(10px);pointer-events:none}
+
+/* 选项面板 */
+#choices{position:absolute;bottom:6%;left:50%;transform:translateX(-50%);z-index:60;display:flex;gap:16px;flex-wrap:wrap;justify-content:center;transition:all 0.4s ease}
+#choices.hidden{opacity:0;pointer-events:none;transform:translateX(-50%) translateY(20px)}
+.choice-btn{padding:14px 32px;font-size:16px;border-radius:30px;border:2px solid #3a5a8c;background:rgba(255,255,255,0.9);color:#3a5a8c;cursor:pointer;transition:all 0.3s;font-family:'Noto Sans SC',sans-serif;white-space:nowrap;pointer-events:auto}
+.choice-btn:hover{background:#3a5a8c;color:#fff;transform:translateY(-3px);box-shadow:0 6px 20px rgba(58,90,140,0.3)}
+.choice-btn.danger{border-color:#c0392b;color:#c0392b}
+.choice-btn.danger:hover{background:#c0392b;color:#fff;box-shadow:0 6px 20px rgba(192,57,43,0.3)}
+
+/* 文本输入框 */
+#text-input-area{display:none;align-items:center;gap:12px;pointer-events:auto}
+#text-input-area.show{display:flex}
+#text-input-field{padding:12px 20px;font-size:16px;border:2px solid #3a5a8c;border-radius:25px;outline:none;width:300px;font-family:'Noto Sans SC',sans-serif;transition:all 0.3s}
+#text-input-field:focus{box-shadow:0 0 15px rgba(58,90,140,0.2)}
+#text-submit-btn{padding:12px 28px;font-size:16px;background:#3a5a8c;color:#fff;border:none;border-radius:25px;cursor:pointer;transition:all 0.3s;font-family:'Noto Sans SC',sans-serif}
+#text-submit-btn:hover{transform:translateY(-2px);box-shadow:0 4px 15px rgba(58,90,140,0.4)}
+
+/* 结果弹窗 */
+#result-overlay{position:absolute;inset:0;background:rgba(0,0,0,0.7);z-index:200;display:none;align-items:center;justify-content:center}
+#result-overlay.show{display:flex}
+#result-box{background:rgba(255,255,255,0.95);border-radius:20px;padding:40px;text-align:center;max-width:500px;width:90%;box-shadow:0 20px 60px rgba(0,0,0,0.5);animation:popIn 0.5s cubic-bezier(0.22,1,0.36,1)}
+#result-box.success{border:3px solid #27ae60}
+#result-box.fail{border:3px solid #c0392b}
+#result-box h2{font-size:32px;margin-bottom:16px}
+#result-box.success h2{color:#27ae60}
+#result-box.fail h2{color:#c0392b}
+#result-box p{font-size:16px;color:#555;line-height:1.8;margin-bottom:20px}
+#result-box .score{font-size:48px;font-weight:900;margin:16px 0}
+#result-box.success .score{color:#27ae60}
+#result-box.fail .score{color:#c0392b}
+#restart-btn{padding:14px 40px;font-size:16px;background:linear-gradient(135deg,#3a5a8c,#2c4a7c);color:#fff;border:none;border-radius:30px;cursor:pointer;letter-spacing:2px;transition:all 0.3s;font-family:'Noto Sans SC',sans-serif}
+#restart-btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(58,90,140,0.4)}
+
+/* 血条 - 右上角 */
+#health-bar-container{position:absolute;top:20px;right:24px;z-index:80;display:none;align-items:center;gap:10px}
+#health-bar-container.show{display:flex}
+#health-label{font-size:14px;font-weight:700;color:#333;white-space:nowrap}
+#health-bar-bg{width:180px;height:22px;background:#ddd;border-radius:11px;overflow:hidden;box-shadow:inset 0 2px 4px rgba(0,0,0,0.2);border:2px solid #aaa}
+#health-bar-fill{height:100%;width:100%;background:linear-gradient(90deg,#e74c3c 0%,#f39c12 30%,#2ecc71 70%,#27ae60 100%);border-radius:9px;transition:width 0.5s ease;position:relative}
+#health-bar-fill::after{content:'';position:absolute;top:2px;left:4px;right:4px;height:40%;background:linear-gradient(180deg,rgba(255,255,255,0.4) 0%,transparent 100%);border-radius:4px}
+#health-text{font-size:12px;font-weight:900;color:#333;position:absolute;right:10px;top:50%;transform:translateY(-50%)}
+#health-bar-bg{position:relative;display:flex;align-items:center}
+#health-bar-inner-text{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-size:11px;font-weight:700;color:#333;z-index:1}
+
+/* 粒子效果 */
+.particle{position:absolute;pointer-events:none;animation:particleUp 1.5s ease-out forwards}
+@keyframes particleUp{0%{opacity:1;transform:translateY(0) scale(1)}100%{opacity:0;transform:translateY(-120px) scale(0.3)}}
+
+/* 黑板上Excel图片——只盖黑板，不挡老师 */
+#excel-overlay{position:absolute;top:8%;left:50%;transform:translateX(-50%);z-index:2;display:none;animation:fadeIn 0.5s ease;pointer-events:none}
+#excel-overlay.show{display:block}
+#excel-overlay img{width:clamp(260px,35vw,500px);max-height:28%;object-fit:contain;border-radius:6px;box-shadow:0 8px 30px rgba(0,0,0,0.4)}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+
+/* 第二轮提问面板 */
+#choices-round2{position:absolute;bottom:6%;left:50%;transform:translateX(-50%);z-index:60;display:flex;gap:16px;flex-wrap:wrap;justify-content:center;transition:all 0.4s ease}
+#choices-round2.hidden{opacity:0;pointer-events:none;transform:translateX(-50%) translateY(20px)}
+#round2-input-area{display:none;align-items:center;gap:12px;pointer-events:auto}
+#round2-input-area.show{display:flex}
+#round2-input-field{padding:12px 20px;font-size:16px;border:2px solid #3a5a8c;border-radius:25px;outline:none;width:260px;font-family:'Noto Sans SC',sans-serif;transition:all 0.3s}
+#round2-input-field:focus{box-shadow:0 0 15px rgba(58,90,140,0.2)}
+#round2-submit-btn{padding:12px 28px;font-size:16px;background:#3a5a8c;color:#fff;border:none;border-radius:25px;cursor:pointer;transition:all 0.3s;font-family:'Noto Sans SC',sans-serif}
+#round2-submit-btn:hover{transform:translateY(-2px);box-shadow:0 4px 15px rgba(58,90,140,0.4)}
+
+@media (max-width:600px){
+  #dialog{top:12%;left:calc(50% + 10vw)}
+  #dialog-bubble{max-width:65vw;font-size:14px;padding:14px 18px}
+  #dialog-text{font-size:14px}
+  .choice-btn{padding:12px 22px;font-size:14px}
+  #text-input-field{width:180px}
+}
+</style>
 </head>
 <body>
-  <canvas id="particles-canvas"></canvas>
-
-  <div class="container">
-    <!-- ===== HERO ===== -->
-    <header class="hero reveal">
-      <div class="hero-badge"><span class="dot"></span> 2026 RECRUITMENT <span class="dot"></span></div>
-      <h1>向明中学计算机社</h1>
-      <div class="hero-subtitle">正 式 招 新</div>
-      <div class="hero-tagline">C++ 编程 · 网页设计 · Unity 游戏开发 &nbsp;|&nbsp; 全方向授课</div>
-    </header>
-
-    <!-- ===== STATS ===== -->
-    <div class="stats-bar reveal">
-      <div class="stat-item">
-        <div class="stat-num">3<span class="plus">+</span></div>
-        <div class="stat-label">学习方向</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-num">4</div>
-        <div class="stat-label">难度层级</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-num">100<span class="plus">+</span></div>
-        <div class="stat-label">项目作品</div>
+<div id="game-container">
+  <!-- 教室场景 -->
+  <div id="classroom">
+    <div class="wall-back"></div>
+    <div class="floor"></div>
+    <div class="window left"></div>
+    <div class="window right"></div>
+    <div class="lights">
+      <div class="light"></div>
+      <div class="light"></div>
+      <div class="light"></div>
+    </div>
+    <div class="blackboard"><div class="blackboard-text">平时成绩保卫战</div></div>
+    <div class="multimedia">
+      <div class="screen"></div>
+      <div class="stand"></div>
+    </div>
+    <div class="teacher-desk"></div>
+    <div class="chair">
+      <div class="backrest"></div>
+      <div class="seat"></div>
+      <div class="legs">
+        <div class="leg"></div>
+        <div class="leg"></div>
       </div>
     </div>
-
-    <!-- ===== CTA ===== -->
-    <div class="cta-section reveal">
-      <div class="cta-content">
-        <h2>加入我们</h2>
-        <p class="cta-text">热爱代码、喜欢创作、想掌握硬核实用技能的新高一和新高二，欢迎加入我们！</p>
-        <a href="javascript:void(0)" class="cta-btn" onclick="document.getElementById('weixin-modal').style.display='flex'">立 即 报 名</a>
+    <div id="teacher">
+      <div class="head">
+        <div class="hair"></div>
+        <div class="eye left"></div>
+        <div class="eye right"></div>
+        <div class="mouth"></div>
+      </div>
+      <div class="arms">
+        <div class="arm left"></div>
+        <div class="arm right"></div>
+      </div>
+      <div class="body-torso"><div class="collar"></div></div>
+      <div class="legs">
+        <div class="leg"></div>
+        <div class="leg"></div>
       </div>
     </div>
-
-    <!-- ===== NAVIGATION TABS ===== -->
-    <div class="nav-tabs reveal">
-      <button class="nav-tab active" data-tab="home">首 页</button>
-      <button class="nav-tab" data-tab="articles">社团文章</button>
-    </div>
-
-    <!-- ===== TAB: 首页 ===== -->
-    <div class="tab-panel active" id="tab-home">
-      <!-- ===== 三大学习赛道 ===== -->
-      <section class="section reveal">
-        <div class="section-header">
-          <h2>三大赛道</h2>
-          <div class="section-subtitle">多方向 · 全覆盖 · 零基础友好</div>
-        </div>
-        <div class="track-grid">
-          <!-- C++ -->
-          <div class="track-card">
-            <img class="track-img" src="images/C++.webp" alt="C++">
-            <div class="track-body">
-              <div class="track-icon">💻</div>
-              <h3>C++ 程序开发</h3>
-              <p>定制两学期系统化课程，基础语法高效精讲，每4-5节课完成一套完整小程序，夯实竞赛核心能力。</p>
-              <div class="tech-tags">
-                <span class="tech-tag">C++</span>
-                <span class="tech-tag">算法</span>
-                <span class="tech-tag">竞赛</span>
-              </div>
-            </div>
-          </div>
-          <!-- 网页 -->
-          <div class="track-card">
-            <img class="track-img" src="images/HTML.webp" alt="HTML">
-            <div class="track-body">
-              <div class="track-icon">🌐</div>
-              <h3>网页前端设计</h3>
-              <p>HTML 页面搭建、VS Code 实操、GitHub 代码管理，独立制作专属个人网页。</p>
-              <div class="tech-tags">
-                <span class="tech-tag">HTML/CSS</span>
-                <span class="tech-tag">VS Code</span>
-                <span class="tech-tag">GitHub</span>
-              </div>
-            </div>
-          </div>
-          <!-- 游戏 -->
-          <div class="track-card">
-            <img class="track-img" src="images/unity.png" alt="Unity">
-            <div class="track-body">
-              <div class="track-icon">🎮</div>
-              <h3>游戏创意制作</h3>
-              <p>C# 语法搭配 Unity 引擎，从零设计、开发原创休闲小游戏。</p>
-              <div class="tech-tags">
-                <span class="tech-tag">C#</span>
-                <span class="tech-tag">Unity</span>
-                <span class="tech-tag">GameDev</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ===== 分层教学 ===== -->
-      <section class="section reveal">
-        <div class="section-header">
-          <h2>分层教学</h2>
-          <div class="section-subtitle">因材施教 · 各取所需</div>
-        </div>
-        <div class="level-grid">
-          <div class="level-card beginner">
-            <div class="level-icon">🌱</div>
-            <h3>零基础通道</h3>
-            <p>从零手把手教学，无需任何基础也能轻松跟上。每节课配备详细讲义与实操练习，稳步建立编程思维。</p>
-          </div>
-          <div class="level-card advanced">
-            <div class="level-icon">🚀</div>
-            <h3>高阶提升通道</h3>
-            <p>深挖算法、大型项目开发，冲刺各类科创编程赛事。竞赛经验丰富的学长学姐带你冲击更高目标。</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- ===== 社团优势 ===== -->
-      <section class="section reveal">
-        <div class="section-header">
-          <h2>社团优势</h2>
-          <div class="section-subtitle">不止于代码 · 全方位成长</div>
-        </div>
-        <div class="adv-grid">
-          <div class="adv-item">
-            <div class="adv-icon">🎯</div>
-            <p>氛围轻松无内卷，课堂自由实操交流，可学习可放松</p>
-          </div>
-          <div class="adv-item">
-            <div class="adv-icon">📦</div>
-            <p>全程项目化学习，每一阶段都能产出完整原创作品，积累作品集</p>
-          </div>
-          <div class="adv-item">
-            <div class="adv-icon">🏆</div>
-            <p>往届学长学姐竞赛经验丰富，斩获众多科创、编程赛事奖项，定期分享备赛技巧</p>
-          </div>
-          <div class="adv-item">
-            <div class="adv-icon">🎁</div>
-            <p>海量专属学习资料、实操素材、项目模板，社团福利持续更新</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- ===== 标语 ===== -->
-      <div class="side-tags">
-        <span class="side-tag">多方向技能学习</span>
-        <span class="side-tag">分层教学因材施教</span>
-        <span class="side-tag">竞赛大佬带队</span>
-        <span class="side-tag">作品福利双丰收</span>
-      </div>
-    </div>
-
-    <!-- ===== TAB: 社团文章 ===== -->
-    <div class="tab-panel" id="tab-articles">
-      <section class="section">
-        <div class="section-header">
-          <h2>社团文章</h2>
-          <div class="section-subtitle">技术分享 · 项目复盘 · 赛事经验</div>
-        </div>
-        <div class="article-search">
-          <input type="text" id="article-search-input" placeholder="搜索文章..." oninput="filterArticles()">
-          <span class="article-search-icon">🔍</span>
-        </div>
-        <div class="article-no-result" id="article-no-result">没有找到匹配的文章</div>
-        <div class="article-grid" id="article-grid">
-          <div class="article-card reveal" onclick="openArticle('【社团新闻】计算机社正式成立','2026年6月24日','计算机社','社团新闻','今天，我校团委学生会社团部给予我社答复：学校正式通过社团成立申请。计算机社于2026年6月24日正式成立。社团正式定名为计算机社，社团地点为上海市向明中学（西部校区）创新协会楼5206教室，我校信息组马老师担任指导老师，李羿嵘担任社长。社团将围绕C++程序设计、HTML网页设计、unity游戏设计展开社团活动。社团活动实施分层活动，为多方面人才考虑。欢迎新高一、高二学生报名加入。')">
-            <div class="article-date">
-              <div class="day">6/24</div>
-              <div class="month">2026</div>
-            </div>
-            <div class="article-body">
-              <h4>【社团新闻】计算机社正式成立</h4>
-              <p class="article-excerpt">今天，我校团委学生会社团部给予我社答复：学校正式通过社团成立申请。计算机社于2026年6月24日正式成立……</p>
-              <div class="article-meta">
-                <span>📝 计算机社</span>
-                <span>🏷️ 社团新闻</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="article-card reveal" onclick="openArticle('【社团新闻】我社正式启动创立社团程序','2026年6月7日','计算机社','社团新闻','今天，我社相关组织部门正式决定向社团部提交新社团成立申请表。')">
-            <div class="article-date">
-              <div class="day">6/7</div>
-              <div class="month">2026</div>
-            </div>
-            <div class="article-body">
-              <h4>【社团新闻】我社正式启动创立社团程序</h4>
-              <p class="article-excerpt">今天，我社相关组织部门正式决定向社团部提交新社团成立申请表</p>
-              <div class="article-meta">
-                <span>📝 计算机社</span>
-                <span>🏷️ 社团新闻</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
-
-    <footer class="footer">
-      <p>© 2026 上海市向明中学计算机社 · Xiangming High School Programming Club</p>
-      <p style="margin-top:6px;">社长：李羿嵘（Mengqiu07）</p>
-    </footer>
-  </div>
-
-  <!-- ===== 微信弹窗 ===== -->
-  <div class="weixin-modal" id="weixin-modal" onclick="if(event.target===this)this.style.display='none'">
-    <div class="weixin-modal-content">
-      <h3>扫码报名</h3>
-      <div class="weixin-grid">
-        <div class="weixin-item">
-          <img src="images/lyrweixin.jpg" alt="李羿嵘">
-          <div class="weixin-name">李羿嵘社长 @roong20100807</div>
-        </div>
-        <div class="weixin-item">
-          <img src="images/lcyweixin.jpg" alt="楼宇辰">
-          <div class="weixin-name">楼宇辰 @wxid_4getmddgdj7c12</div>
-        </div>
-        <div class="weixin-item">
-          <img src="images/wsyweixin.png" alt="吴顺宇">
-          <div class="weixin-name">吴顺宇 @wsy303404Hi</div>
-        </div>
-        <div class="weixin-item">
-          <img src="images/zhzweixin.jpg" alt="张涵哲">
-          <div class="weixin-name">张涵哲 @hanszhanghanzhe</div>
-        </div>
-      </div>
-      <button class="weixin-modal-close" onclick="document.getElementById('weixin-modal').style.display='none'">关 闭</button>
+    <div class="student-desk">
+      <div class="book"></div>
     </div>
   </div>
 
-  <!-- ===== 文章详情弹窗 ===== -->
-  <div class="article-modal" id="article-modal" onclick="if(event.target===this)document.getElementById('article-modal').style.display='none'">
-    <div class="article-modal-content">
-      <div class="article-full-meta">
-        <span id="am-date"></span>
-        <span id="am-author"></span>
-        <span id="am-tag"></span>
-      </div>
-      <h3 id="am-title"></h3>
-      <div class="article-full-body" id="am-body"></div>
-      <button class="article-modal-close" onclick="document.getElementById('article-modal').style.display='none'">关 闭</button>
+  <!-- 血条 -->
+  <div id="health-bar-container">
+    <span id="health-label">平时成绩</span>
+    <div id="health-bar-bg">
+      <div id="health-bar-fill" style="width:100%"></div>
+      <span id="health-bar-inner-text">100/100</span>
     </div>
   </div>
 
-  <!-- ===== TECH BACKGROUND ===== -->
-  <script>
-    // ---- Particles ----
-    (function(){
-      var c = document.getElementById('particles-canvas');
-      var ctx = c.getContext('2d');
-      var w, h, time = 0;
-      var mouseX = -999, mouseY = -999;
+  <!-- 名字输入 -->
+  <div id="name-overlay">
+    <div id="name-box">
+      <h2>平时成绩保卫战</h2>
+      <p>请输入你的名字开始挑战</p>
+      <input type="text" id="name-input" placeholder="输入你的名字" maxlength="10">
+      <br>
+      <button id="name-btn" onclick="startGame()">开始挑战</button>
+    </div>
+  </div>
 
-      function resize() {
-        w = c.width = window.innerWidth;
-        h = c.height = window.innerHeight;
-      }
-      resize();
-      window.addEventListener('resize', resize);
-      document.addEventListener('mousemove', function(e) { mouseX = e.clientX; mouseY = e.clientY; });
+  <!-- 对话框 -->
+  <div id="dialog" class="hidden">
+    <div id="dialog-bubble">
+      <div id="dialog-name"></div>
+      <div id="dialog-text"></div>
+    </div>
+  </div>
 
-      // Hex grid
-      var hexSize = 40;
-      var hexW = hexSize * 2;
-      var hexH = Math.sqrt(3) * hexSize;
+  <!-- 黑板上Excel图片 -->
+  <div id="excel-overlay">
+    <img src="images/Excel.webp" alt="Excel表格">
+  </div>
 
-      function drawHex(cx, cy, s) {
-        ctx.beginPath();
-        for (var i = 0; i < 6; i++) {
-          var angle = Math.PI / 3 * i - Math.PI / 6;
-          var x = cx + s * Math.cos(angle);
-          var y = cy + s * Math.sin(angle);
-          if (i === 0) ctx.moveTo(x, y);
-          else ctx.lineTo(x, y);
-        }
-        ctx.closePath();
-      }
+  <!-- 选项 -->
+  <div id="choices" class="hidden">
+    <button class="choice-btn danger" id="choice-forgot" onclick="chooseForgot()">我忘了</button>
+    <button class="choice-btn" id="choice-silent" onclick="chooseSilent()">沉默...</button>
+    <div id="text-input-area">
+      <input type="text" id="text-input-field" placeholder="输入课文内容...">
+      <button id="text-submit-btn" onclick="checkRecite()">提交</button>
+    </div>
+  </div>
 
-      // Data nodes
-      var nodes = [];
-      var nodeCount = 65;
-      for (var i = 0; i < nodeCount; i++) {
-        nodes.push({
-          x: Math.random() * w,
-          y: Math.random() * h,
-          vx: (Math.random() - 0.5) * 0.5,
-          vy: (Math.random() - 0.5) * 0.5,
-          r: Math.random() * 2 + 0.8,
-          pulse: Math.random() * Math.PI * 2,
-          pulseSpeed: 0.015 + Math.random() * 0.04,
-          hue: Math.random() < 0.5 ? 195 : 330
-        });
-      }
+  <!-- 第二轮提问选项 -->
+  <div id="choices-round2" class="hidden">
+    <div id="round2-input-area">
+      <input type="text" id="round2-input-field" placeholder="输入你的回答...">
+      <button id="round2-submit-btn" onclick="checkWord()">提交</button>
+    </div>
+  </div>
 
-      // Data streams
-      var streams = [];
-      for (var i = 0; i < 15; i++) {
-        streams.push({
-          x: Math.random() * w,
-          y: Math.random() * h,
-          length: 50 + Math.random() * 160,
-          angle: (Math.random() - 0.5) * 0.5,
-          speed: 0.2 + Math.random() * 1,
-          alpha: 0.02 + Math.random() * 0.05,
-          width: 0.5 + Math.random() * 1.2
-        });
-      }
+  <!-- 结果 -->
+  <div id="result-overlay">
+    <div id="result-box">
+      <h2 id="result-title"></h2>
+      <div class="score" id="result-score"></div>
+      <p id="result-msg"></p>
+      <button id="restart-btn" onclick="restartGame()">再来一次</button>
+    </div>
+  </div>
+</div>
 
-      function draw() {
-        ctx.clearRect(0, 0, w, h);
-        time += 0.004;
+<!-- 免责声明 -->
+<div style="position:absolute;bottom:8px;left:0;right:0;text-align:center;z-index:10;pointer-events:none;">
+  <p style="font-size:11px;color:rgba(0,0,0,0.35);margin:0;line-height:1.5;">本游戏仅供娱乐和学习。<br>不代表任何真实情况，请勿随意联想。</p>
+</div>
 
-        // Hex grid background
-        ctx.strokeStyle = 'rgba(0, 229, 255, 0.03)';
-        ctx.lineWidth = 0.5;
-        for (var row = -1; row < h / hexH + 2; row++) {
-          for (var col = -1; col < w / (hexW * 0.75) + 2; col++) {
-            var cx = col * hexW * 0.75;
-            var cy = row * hexH + (col % 2 === 0 ? 0 : hexH / 2);
-            drawHex(cx, cy, hexSize * 0.65);
-            ctx.stroke();
-          }
-        }
+<script>
+const EXPECTED_TEXT = `六王毕，四海一，蜀山兀，阿房出。覆压三百余里，隔离天日。骊山北构而西折，直走咸阳。二川溶溶，流入宫墙。五步一楼，十步一阁；廊腰缦回，檐牙高啄；各抱地势，钩心斗角。盘盘焉，囷囷焉，蜂房水涡，矗不知其几千万落。长桥卧波，未云何龙？复道行空，不霁何虹？高低冥迷，不知西东。歌台暖响，春光融融；舞殿冷袖，风雨凄凄。一日之内，一宫之间，而气候不齐。
+妃嫔媵嫱，王子皇孙，辞楼下殿，辇来于秦，朝歌夜弦，为秦宫人。明星荧荧，开妆镜也；绿云扰扰，梳晓鬟也；渭流涨腻，弃脂水也；烟斜雾横，焚椒兰也。雷霆乍惊，宫车过也；辘辘远听，杳不知其所之也。一肌一容，尽态极妍，缦立远视，而望幸焉。有不得见者，三十六年。燕、赵之收藏，韩、魏之经营，齐、楚之精英，几世几年，摽掠其人，倚叠如山。一旦不能有，输来其间。鼎铛玉石，金块珠砾，弃掷逦迤，秦人视之，亦不甚惜。
+嗟乎！一人之心，千万人之心也。秦爱纷奢，人亦念其家。奈何取之尽锱铢，用之如泥沙？使负栋之柱，多于南亩之农夫；架梁之椽，多于机上之工女；钉头磷磷，多于在庾之粟粒；瓦缝参差，多于周身之帛缕；直栏横槛，多于九土之城郭；管弦呕哑，多于市人之言语。使天下之人，不敢言而敢怒。独夫之心，日益骄固。戍卒叫，函谷举，楚人一炬，可怜焦土！
+呜呼，灭六国者六国也，非秦也。族秦者秦也，非天下也。嗟乎！使六国各爱其人，则足以拒秦；使秦复爱六国之人，则递三世可至万世而为君，谁得而族灭也？秦人不暇自哀，而后人哀之；后人哀之而不鉴之，亦使后人而复哀后人也。`;
 
-        // Data streams
-        for (var i = 0; i < streams.length; i++) {
-          var s = streams[i];
-          s.y += s.speed;
-          if (s.y > h + s.length) { s.y = -s.length; s.x = Math.random() * w; }
+// 字词解释题库（字字落实，答案必须精确匹配）
+// 每个字只有一个标准答案，必须完全一致才算对
+const WORD_QUESTIONS = [
+  { word:'速', answer:'招致', correctMsg:'不错！"速"就是"招致"的意思。', wrongMsg:'不对！"速"的意思是"招致"！' },
+  { word:'举', answer:'攻克', correctMsg:'正确！"举"是"攻克"的意思。', wrongMsg:'不对！"举"是"攻克"的意思！' },
+  { word:'一', answer:'统一', correctMsg:'没错！"一"就是"统一"的意思。', wrongMsg:'错了！"一"是"统一"的意思！' },
+  { word:'兀', answer:'光秃', correctMsg:'正确！"兀"是"光秃"的意思。', wrongMsg:'不对！"兀"是"光秃"的意思！' },
+  { word:'缦', answer:'萦绕', correctMsg:'正确！"缦"是"萦绕"的意思。', wrongMsg:'不对！"缦"是"萦绕"的意思！' },
+  { word:'霁', answer:'雨后天晴', correctMsg:'正确！"霁"是"雨后天晴"的意思。', wrongMsg:'不对！"霁"是"雨后天晴"的意思！' }
+];
 
-          ctx.save();
-          ctx.globalAlpha = s.alpha;
-          ctx.strokeStyle = i % 3 === 0 ? '#ff4081' : '#00e5ff';
-          ctx.lineWidth = s.width;
-          ctx.beginPath();
-          ctx.moveTo(s.x, s.y);
-          var dx = Math.sin(time + i * 1.3) * 25;
-          ctx.quadraticCurveTo(s.x + dx, s.y + s.length * 0.5, s.x + dx * 1.5, s.y + s.length);
-          ctx.stroke();
-          ctx.restore();
-        }
+// 老师语录（从语录.xlsx和PPT中整理的原话）
+const TEACHER_QUOTES = [
+  '我的课一节课3000块钱',
+  '视力不佳',
+  '我是残疾人',
+  '要看明白想清楚它是什么、要我做什么',
+  '都能闭嘴吗？！',
+  '语文学习群这地方不是让你投票表决的',
+  '这里不是讨价还价的菜市场。',
+  '来学习，至少要做合格的算盘珠子，而不是动不动拍脑袋发表所谓的高见。',
+  '少说多想多做。',
+  '混账东西',
+  '见他妈的鬼了。',
+  '市六医院顶楼漂亮小姐姐',
+  '认真听老师话（不管是否喜欢这个老师），从来没有将帅与士卒貌不合、心不齐能打赢仗的。',
+  '听老师的话 +发挥主观能动性',
+  '为什么我老师想得到，你想不到？',
+  '没有别人给的宝典，只有自己炼出的宝典',
+  '宝宝懂用功有好处的道理，但宝宝就是不想用功',
+  '妈妈劝宝宝用功，唠叨用功有好处的道理',
+  '正确的废话',
+  '习惯决定命运。',
+  '语文是一门让人聪明起来的学科',
+  '在老师的指导下用正确的方法积极、主动地学习，做建构者。',
+  '多实践操练+反思总结'
+];
 
-        // Nodes
-        for (var i = 0; i < nodes.length; i++) {
-          var n = nodes[i];
-          n.x += n.vx;
-          n.y += n.vy;
-          if (n.x < -20) n.x = w + 20;
-          if (n.x > w + 20) n.x = -20;
-          if (n.y < -20) n.y = h + 20;
-          if (n.y > h + 20) n.y = -20;
+let playerName = '';
+let score = 100;
+let gameActive = false;
+let currentRound = 0;     // 0=未开始 1=背诵 2=字词解释1 3=字词解释2 4=字词解释3 ...
+let wordQuestionIndex = 0; // 当前字词解释的索引
+let quoteIndex = 0;        // 语录轰炸索引
+let selectedQuotes = [];   // 随机选出的10句语录
 
-          // Mouse repulsion
-          var mdx = n.x - mouseX, mdy = n.y - mouseY;
-          var mdist = Math.sqrt(mdx * mdx + mdy * mdy);
-          if (mdist < 150) {
-            n.x += (mdx / mdist) * 1.5;
-            n.y += (mdy / mdist) * 1.5;
-          }
+function startGame() {
+  const input = document.getElementById('name-input');
+  playerName = input.value.trim();
+  if (!playerName) {
+    input.focus();
+    input.style.borderColor = '#c0392b';
+    setTimeout(() => input.style.borderColor = '#ddd', 1000);
+    return;
+  }
+  currentRound = 1;
+  wordQuestionIndex = 0;
+  gameActive = true;
+  document.getElementById('name-overlay').classList.add('hidden');
+  document.getElementById('health-bar-container').classList.add('show');
+  updateHealthBar();
+  document.getElementById('text-input-field').placeholder = '输入课文内容...';
 
-          n.pulse += n.pulseSpeed;
-          var pulseR = n.r + Math.sin(n.pulse) * 0.9;
+  setTimeout(() => {
+    showDialog('sanxiao', `${playerName}，来背书。`);
+    setTimeout(() => {
+      showDialog('sanxiao', '把《阿房宫赋》背一遍。');
+      setTimeout(() => showChoices(), 1200);
+    }, 2000);
+  }, 500);
+}
 
-          var color = n.hue === 195 ? '0, 229, 255' : '255, 64, 129';
+function showDialog(name, text) {
+  const dialog = document.getElementById('dialog');
+  document.getElementById('dialog-name').textContent = name;
+  document.getElementById('dialog-text').textContent = text;
+  dialog.classList.remove('hidden');
+}
 
-          // Glow
-          var glow = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, pulseR * 5);
-          glow.addColorStop(0, 'rgba(' + color + ', 0.3)');
-          glow.addColorStop(0.3, 'rgba(' + color + ', 0.08)');
-          glow.addColorStop(1, 'rgba(' + color + ', 0)');
-          ctx.beginPath();
-          ctx.arc(n.x, n.y, pulseR * 5, 0, Math.PI * 2);
-          ctx.fillStyle = glow;
-          ctx.fill();
+function hideDialog() { document.getElementById('dialog').classList.add('hidden'); }
 
-          // Core
-          ctx.beginPath();
-          ctx.arc(n.x, n.y, pulseR, 0, Math.PI * 2);
-          ctx.fillStyle = 'rgba(' + color + ', 0.8)';
-          ctx.fill();
-        }
+function showChoices() {
+  document.getElementById('choices').classList.remove('hidden');
+  document.getElementById('text-input-area').classList.add('show');
+}
+function hideChoices() {
+  document.getElementById('choices').classList.add('hidden');
+  document.getElementById('text-input-area').classList.remove('show');
+}
 
-        // Connections
-        for (var i = 0; i < nodes.length; i++) {
-          for (var j = i + 1; j < nodes.length; j++) {
-            var dx = nodes[i].x - nodes[j].x;
-            var dy = nodes[i].y - nodes[j].y;
-            var dist = Math.sqrt(dx * dx + dy * dy);
-            if (dist < 140) {
-              ctx.beginPath();
-              ctx.moveTo(nodes[i].x, nodes[i].y);
-              ctx.lineTo(nodes[j].x, nodes[j].y);
-              ctx.strokeStyle = 'rgba(0, 229, 255,' + (0.14 * (1 - dist / 140)) + ')';
-              ctx.lineWidth = 0.5;
-              ctx.stroke();
-            }
-          }
-        }
+function updateHealthBar() {
+  document.getElementById('health-bar-fill').style.width = score + '%';
+  document.getElementById('health-bar-inner-text').textContent = score + '/100';
+  const fill = document.getElementById('health-bar-fill');
+  if (score > 60) fill.style.background = 'linear-gradient(90deg, #f39c12 0%, #2ecc71 70%, #27ae60 100%)';
+  else if (score > 30) fill.style.background = 'linear-gradient(90deg, #e74c3c 0%, #f39c12 50%, #f1c40f 100%)';
+  else fill.style.background = 'linear-gradient(90deg, #c0392b 0%, #e74c3c 50%, #e74c3c 100%)';
+}
 
-        // Circuit accent lines
-        ctx.strokeStyle = 'rgba(255, 64, 129, 0.05)';
-        ctx.lineWidth = 1;
-        for (var k = 0; k < 4; k++) {
-          var lx = (w * 0.2 * k + w * 0.1) + Math.sin(time * 0.6 + k) * 80;
-          ctx.beginPath();
-          ctx.moveTo(lx, 0);
-          ctx.lineTo(lx + Math.cos(time + k) * 50, h * 0.25);
-          ctx.lineTo(lx - 25 + Math.sin(time * 0.4 + k) * 60, h * 0.55);
-          ctx.lineTo(lx + 10, h);
-          ctx.stroke();
-        }
+function deductScore(amount) { score = Math.max(0, score - amount); updateHealthBar(); }
 
-        // Top-bottom accent gradient bars
-        var topGrad = ctx.createLinearGradient(0, 0, w, 0);
-        topGrad.addColorStop(0, 'rgba(0, 229, 255, 0)');
-        topGrad.addColorStop(0.3, 'rgba(0, 229, 255, 0.05)');
-        topGrad.addColorStop(0.5, 'rgba(105, 240, 174, 0.07)');
-        topGrad.addColorStop(0.7, 'rgba(0, 229, 255, 0.05)');
-        topGrad.addColorStop(1, 'rgba(0, 229, 255, 0)');
-        ctx.fillStyle = topGrad;
-        ctx.fillRect(0, 0, w, 3);
+function showWordChoices() {
+  document.getElementById('choices-round2').classList.remove('hidden');
+  document.getElementById('round2-input-area').classList.add('show');
+}
+function hideWordChoices() {
+  document.getElementById('choices-round2').classList.add('hidden');
+  document.getElementById('round2-input-area').classList.remove('show');
+}
 
-        var botGrad = ctx.createLinearGradient(0, h - 3, w, h - 3);
-        botGrad.addColorStop(0, 'rgba(255, 64, 129, 0)');
-        botGrad.addColorStop(0.5, 'rgba(255, 64, 129, 0.06)');
-        botGrad.addColorStop(1, 'rgba(255, 64, 129, 0)');
-        ctx.fillStyle = botGrad;
-        ctx.fillRect(0, h - 3, w, 3);
+function playFailDialogues(callback) {
+  hideChoices(); hideWordChoices(); hideDialog();
+  let step = 0;
+  const dialogues = [
+    `"${playerName}，没背？"`,
+    `"课代表，把${playerName}名字记下来，扣他个三分。"`,
+    '"我这是多久以前布置的作业了……"'
+  ];
+  function nextLine() {
+    if (step < dialogues.length) {
+      deductScore(3);
+      showDialog('sanxiao', dialogues[step]);
+      step++;
+      setTimeout(nextLine, 2000);
+    } else setTimeout(callback, 1500);
+  }
+  nextLine();
+}
 
-        requestAnimationFrame(draw);
-      }
-      draw();
-    })();
+function chooseForgot() {
+  if (!gameActive) return;
+  gameActive = false;
+  playFailDialogues(() => { if(score<=0){showResult('fail','平时成绩扣光了！');return;} startWordRound(0); });
+}
 
-    // ---- Tab Navigation ----
-    (function(){
-      var tabs = document.querySelectorAll('.nav-tab');
-      var panels = document.querySelectorAll('.tab-panel');
-      tabs.forEach(function(tab) {
-        tab.addEventListener('click', function() {
-          var targetId = 'tab-' + this.getAttribute('data-tab');
-          tabs.forEach(function(t) { t.classList.remove('active'); });
-          this.classList.add('active');
-          panels.forEach(function(p) {
-            p.classList.remove('active');
-            if (p.id === targetId) p.classList.add('active');
-          });
-        });
-      });
-    })();
+function chooseSilent() {
+  if (!gameActive) return;
+  gameActive = false;
+  playFailDialogues(() => { if(score<=0){showResult('fail','平时成绩扣光了！');return;} startWordRound(0); });
+}
 
-    // ---- Open Article ----
-    function openArticle(title, date, author, tag, body) {
-      document.getElementById('am-title').textContent = title;
-      document.getElementById('am-date').textContent = date;
-      document.getElementById('am-author').textContent = '📝 ' + author;
-      document.getElementById('am-tag').textContent = '🏷️ ' + tag;
-      document.getElementById('am-body').textContent = body;
-      document.getElementById('article-modal').style.display = 'flex';
+// ===== 第一轮：背诵提交 =====
+function checkRecite() {
+  if (!gameActive) return;
+  const input = document.getElementById('text-input-field').value.trim();
+  if (!input) {
+    document.getElementById('text-input-field').focus();
+    document.getElementById('text-input-field').style.borderColor = '#c0392b';
+    setTimeout(() => document.getElementById('text-input-field').style.borderColor = '#3a5a8c', 1000);
+    return;
+  }
+  gameActive = false;
+  hideChoices();
+  hideDialog();
+  document.getElementById('text-input-field').value = '';
+
+  if (currentRound === 1) {
+    const ni = input.replace(/\s+/g, ''), ne = EXPECTED_TEXT.replace(/\s+/g, '');
+    if (ni === ne) {
+      showDialog('sanxiao', `很好！${playerName}，背得非常熟练！`);
+      spawnParticles();
+      setTimeout(() => startWordRound(0), 3000);
+    } else {
+      playFailDialogues(() => { if(score<=0){showResult('fail','背错课文，平时成绩扣光了！');return;} startWordRound(0); });
     }
+  }
+}
 
-    // ---- Article Search ----
-    function filterArticles() {
-      var query = document.getElementById('article-search-input').value.toLowerCase().trim();
-      var cards = document.querySelectorAll('#article-grid .article-card');
-      var noResult = document.getElementById('article-no-result');
-      var visibleCount = 0;
-      cards.forEach(function(card) {
-        var text = card.textContent.toLowerCase();
-        if (!query || text.indexOf(query) !== -1) {
-          card.style.display = '';
-          visibleCount++;
-        } else {
-          card.style.display = 'none';
-        }
-      });
-      noResult.style.display = visibleCount === 0 ? 'block' : 'none';
+// ===== 字词解释轮（rounds 2,3,4）=====
+function startWordRound(idx) {
+  wordQuestionIndex = idx;
+  currentRound = 2 + idx; // round 2,3,4
+  const q = WORD_QUESTIONS[idx];
+  gameActive = true;
+  hideDialog(); hideChoices(); hideWordChoices();
+  document.getElementById('excel-overlay').classList.add('show');
+  document.querySelector('.blackboard-text').style.display = 'none';
+  document.getElementById('round2-input-field').placeholder = `输入"${q.word}"的意思...`;
+  document.getElementById('round2-input-field').value = '';
+
+  setTimeout(() => {
+    showDialog('sanxiao', idx === 0 ? '他涂黑，看清楚了。' : '好，继续看黑板。');
+    setTimeout(() => {
+      showDialog('sanxiao', `${playerName}，"${q.word}"是什么意思？`);
+      showWordChoices();
+      document.getElementById('round2-input-field').focus();
+    }, 2000);
+  }, 600);
+}
+
+function checkWord() {
+  if (!gameActive) return;
+  const input = document.getElementById('round2-input-field').value.trim();
+  if (!input) {
+    document.getElementById('round2-input-field').focus();
+    document.getElementById('round2-input-field').style.borderColor = '#c0392b';
+    setTimeout(() => document.getElementById('round2-input-field').style.borderColor = '#3a5a8c', 1000);
+    return;
+  }
+  gameActive = false;
+  hideWordChoices(); hideDialog();
+  document.getElementById('round2-input-field').value = '';
+
+  const q = WORD_QUESTIONS[wordQuestionIndex];
+  // 字字落实：必须精确匹配答案，不能模糊
+  const isCorrect = (input === q.answer);
+
+  if (isCorrect) {
+    showDialog('sanxiao', `不错！${playerName}，${q.correctMsg}`);
+    spawnParticles();
+  } else {
+    deductScore(3);
+    showDialog('sanxiao', `${q.wrongMsg} 扣3分！`);
+  }
+
+  // 进入下一题或结束
+  setTimeout(() => {
+    if (score <= 0) { showResult('fail', '平时成绩扣光了！'); return; }
+    if (wordQuestionIndex < WORD_QUESTIONS.length - 1) {
+      startWordRound(wordQuestionIndex + 1);
+    } else {
+      // 所有字词解释完成，进入语录轰炸
+      startQuoteStorm();
     }
-  </script>
+  }, 2500);
+}
+
+// ===== 语录轰炸 =====
+function shuffleArray(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function startQuoteStorm() {
+  quoteIndex = 0;
+  selectedQuotes = shuffleArray(TEACHER_QUOTES).slice(0, 10);
+  gameActive = true;
+  hideDialog(); hideChoices(); hideWordChoices();
+  document.getElementById('excel-overlay').classList.remove('show');
+  document.querySelector('.blackboard-text').style.display = '';
+  document.querySelector('.blackboard-text').textContent = '语录轰炸';
+  
+  setTimeout(() => {
+    showDialog('sanxiao', '哼，字词解释完了是吧？');
+    setTimeout(() => {
+      showDialog('sanxiao', '别以为这就完了，我话还没说完呢。');
+      setTimeout(() => showNextQuote(), 1500);
+    }, 2000);
+  }, 600);
+}
+
+function showNextQuote() {
+  if (quoteIndex >= selectedQuotes.length) {
+    // 10句语录放完，进入扣分环节
+    startFinalDeduction();
+    return;
+  }
+  
+  const quote = selectedQuotes[quoteIndex];
+  showDialog('sanxiao', quote);
+  quoteIndex++;
+  setTimeout(() => showNextQuote(), 1800);
+}
+
+function startFinalDeduction() {
+  hideDialog();
+  document.querySelector('.blackboard-text').textContent = '扣分时间';
+  
+  setTimeout(() => {
+    showDialog('sanxiao', `${playerName}，不要扯别的，只许州官放火不许百姓点灯。扣三分！`);
+    deductScore(3);
+    setTimeout(() => {
+      if (score <= 0) { showFinalResult(); return; }
+      showDialog('sanxiao', `${playerName}，不行啦！扣三分！`);
+      deductScore(3);
+      setTimeout(() => {
+        showFinalResult();
+      }, 2000);
+    }, 2000);
+  }, 1000);
+}
+
+function showFinalResult() {
+  gameActive = false;
+  hideDialog(); hideChoices(); hideWordChoices();
+  document.getElementById('excel-overlay').classList.remove('show');
+  document.querySelector('.blackboard-text').style.display = '';
+  document.querySelector('.blackboard-text').textContent = '平时成绩保卫战';
+  
+  const overlay = document.getElementById('result-overlay');
+  const box = document.getElementById('result-box');
+  box.className = score > 0 ? 'success' : 'fail';
+  document.getElementById('result-title').textContent = '游戏结束';
+  document.getElementById('result-score').textContent = '你还剩 ' + score + ' 分';
+  document.getElementById('result-msg').textContent = '';
+  overlay.classList.add('show');
+}
+
+// ===== 工具函数 =====
+function spawnParticles() {
+  const container = document.getElementById('game-container');
+  for (let i = 0; i < 30; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    p.textContent = ['⭐','✨','🌟','💫','🎉'][Math.floor(Math.random()*5)];
+    p.style.left = (30 + Math.random() * 40) + '%';
+    p.style.top = (40 + Math.random() * 20) + '%';
+    p.style.fontSize = (16 + Math.random() * 28) + 'px';
+    p.style.animationDelay = (Math.random() * 0.8) + 's';
+    container.appendChild(p);
+    setTimeout(() => p.remove(), 2500);
+  }
+}
+
+function showResult(type, msg) {
+  gameActive = false;
+  const overlay = document.getElementById('result-overlay');
+  const box = document.getElementById('result-box');
+  box.className = type;
+  document.getElementById('result-title').textContent = type === 'success' ? '挑战成功！' : '挑战失败';
+  document.getElementById('result-score').textContent = '平时成绩：' + score;
+  document.getElementById('result-msg').textContent = msg;
+  overlay.classList.add('show');
+  hideDialog(); hideChoices(); hideWordChoices();
+  document.getElementById('excel-overlay').classList.remove('show');
+  document.querySelector('.blackboard-text').style.display = '';
+}
+
+function restartGame() {
+  score = 100; gameActive = false; currentRound = 0; wordQuestionIndex = 0; quoteIndex = 0; selectedQuotes = [];
+  updateHealthBar();
+  document.getElementById('result-overlay').classList.remove('show');
+  document.getElementById('text-input-field').value = '';
+  document.getElementById('round2-input-field').value = '';
+  document.getElementById('excel-overlay').classList.remove('show');
+  document.querySelector('.blackboard-text').style.display = '';
+  document.querySelector('.blackboard-text').textContent = '平时成绩保卫战';
+  hideDialog(); hideChoices(); hideWordChoices();
+  document.getElementById('name-overlay').classList.remove('hidden');
+  document.getElementById('name-input').value = '';
+  document.getElementById('health-bar-container').classList.remove('show');
+}
+
+document.getElementById('name-input').addEventListener('keydown', e => { if(e.key==='Enter')startGame(); });
+document.getElementById('text-input-field').addEventListener('keydown', e => { if(e.key==='Enter')checkRecite(); });
+document.getElementById('round2-input-field').addEventListener('keydown', e => { if(e.key==='Enter')checkWord(); });
+</script>
 </body>
 </html>
