@@ -24,12 +24,12 @@ body{font-family:'Noto Sans SC',sans-serif;overflow:hidden;user-select:none;back
 #classroom .multimedia .screen::after{content:'';position:absolute;inset:4px;background:linear-gradient(135deg,rgba(0,200,255,0.06) 0%,transparent 50%,rgba(0,0,0,0.3) 100%);border-radius:3px}
 #classroom .multimedia .stand{width:30%;height:45%;background:linear-gradient(180deg,#555 0%,#333 100%);margin:0 auto;border-radius:0 0 6px 6px;box-shadow:0 2px 8px rgba(0,0,0,0.3)}
 
-/* 老师桌子 */
-#classroom .teacher-desk{position:absolute;top:52%;left:50%;transform:translateX(-50%);width:clamp(200px,22vw,320px);height:clamp(80px,8vw,100px);background:linear-gradient(180deg,#c4956a 0%,#a0724a 100%);border-radius:8px;box-shadow:0 4px 20px rgba(0,0,0,0.3);z-index:3}
+/* 老师桌子 - 靠右 */
+#classroom .teacher-desk{position:absolute;top:48%;right:12%;width:clamp(200px,22vw,320px);height:clamp(80px,8vw,100px);background:linear-gradient(180deg,#c4956a 0%,#a0724a 100%);border-radius:8px;box-shadow:0 4px 20px rgba(0,0,0,0.3);z-index:3}
 #classroom .teacher-desk::after{content:'';position:absolute;top:4px;left:8px;right:8px;bottom:0;background:linear-gradient(180deg,rgba(255,255,255,0.15) 0%,transparent 30%)}
 
-/* 椅子 */
-#classroom .chair{position:absolute;top:54%;left:calc(50% + 14vw);width:clamp(50px,5vw,70px);height:clamp(70px,7vw,90px);z-index:3}
+/* 椅子 - 在老师桌子右边 */
+#classroom .chair{position:absolute;top:50%;right:4%;width:clamp(50px,5vw,70px);height:clamp(70px,7vw,90px);z-index:6}
 #classroom .chair .seat{width:100%;height:40%;background:#8B6914;border-radius:4px;position:absolute;bottom:30%}
 #classroom .chair .backrest{width:16%;height:100%;background:#8B6914;border-radius:3px;position:absolute;left:0;top:0}
 #classroom .chair .legs{position:absolute;bottom:0;left:0;right:0;height:30%}
@@ -37,40 +37,76 @@ body{font-family:'Noto Sans SC',sans-serif;overflow:hidden;user-select:none;back
 #classroom .chair .leg:nth-child(1){left:10%}
 #classroom .chair .leg:nth-child(2){right:10%}
 
-/* 老师人物 - 恶心版 */
-#teacher{position:absolute;top:38%;left:calc(50% + 2vw);z-index:5;transition:all 0.5s ease}
-#teacher .head{width:clamp(44px,5vw,70px);height:clamp(42px,4.8vw,67px);background:#e8c9a0;border-radius:45% 45% 40% 40%;margin:0 auto 2px;position:relative;overflow:visible}
-/* 地中海秃头 */
-#teacher .head .hair{position:absolute;top:0;left:0;right:0;height:55%;background:linear-gradient(180deg,#333 0%,#444 100%);border-radius:0;clip-path:polygon(0 0,25% 0,30% 55%,70% 55%,75% 0,100% 0,100% 60%,0 60%)}
-/* 头顶反光 */
-#teacher .head::before{content:'';position:absolute;top:8%;left:30%;width:40%;height:25%;background:rgba(255,255,200,0.5);border-radius:50%;z-index:2}
-/* 鼻毛 */
-#teacher .head::after{content:'';position:absolute;bottom:30%;left:48%;width:3px;height:8px;background:#222;z-index:3;transform:translateX(-50%) rotate(15deg)}
-#teacher .head .eye{width:8px;height:9px;background:#222;border-radius:50%;position:absolute;top:40%}
-#teacher .head .eye.left{left:25%;width:10px;height:10px}
-#teacher .head .eye.right{right:28%;width:5px;height:6px;top:42%}
-/* 歪嘴大黄牙 */
-#teacher .head .mouth{width:18px;height:10px;border:2px solid #8B4513;background:#8B4513;border-radius:2px 2px 8px 8px;position:absolute;bottom:18%;left:48%;transform:translateX(-50%) rotate(-3deg);overflow:hidden}
-#teacher .head .mouth::after{content:'';position:absolute;top:-2px;left:2px;width:5px;height:4px;background:#ffeaa7;border-radius:1px;box-shadow:7px 0 0 #ffeaa7}
-/* 痘痘 */
-#teacher .head .acne{width:4px;height:4px;background:#c0392b;border-radius:50%;position:absolute}
-/* 啤酒肚身体 */
-#teacher .body-torso{width:clamp(50px,5vw,70px);height:clamp(55px,5.5vw,75px);background:linear-gradient(180deg,#6B8E23 0%,#556B2F 100%);border-radius:30% 30% 8px 8px;margin:0 auto;position:relative}
-#teacher .body-torso .collar{width:55%;height:18%;border-bottom:2px solid #ddd;border-left:2px solid #ddd;border-right:2px solid #ddd;border-radius:0 0 4px 4px;margin:0 auto;position:absolute;top:2px;left:50%;transform:translateX(-50%)}
-/* 汗渍 */
-#teacher .body-torso::after{content:'';position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:30%;height:20%;background:rgba(100,100,100,0.3);border-radius:50%}
-#teacher .arms{position:absolute;top:8px}
-#teacher .arm{width:clamp(18px,2vw,26px);height:clamp(44px,4.5vw,60px);background:#6B8E23;border-radius:10px;position:absolute;top:6px}
-#teacher .arm.left{left:-28px;transform:rotate(12deg)}
-#teacher .arm.right{right:-28px;transform:rotate(-12deg)}
-/* 腋毛 */
-#teacher .arm.left::after{content:'';position:absolute;top:-2px;left:50%;width:8px;height:6px;background:#333;border-radius:50%;transform:translateX(-50%)}
-#teacher .arm.right::after{content:'';position:absolute;top:-2px;left:50%;width:8px;height:6px;background:#333;border-radius:50%;transform:translateX(-50%)}
-/* O型腿 */
-#teacher .legs{display:flex;justify-content:center;gap:8px;margin-top:2px}
-#teacher .leg{width:clamp(18px,2vw,28px);height:clamp(36px,3.5vw,48px);background:#5a4a3a;border-radius:6px 6px 0 0;position:relative}
-#teacher .leg:first-child{transform:rotate(-8deg);transform-origin:top center}
-#teacher .leg:last-child{transform:rotate(8deg);transform-origin:top center}
+/* 老师人物 - 坐在讲台右边，脚翘椅子上 */
+#teacher{position:absolute;top:30%;right:16%;z-index:5;transition:all 0.5s ease;display:flex;flex-direction:column;align-items:center}
+#teacher .head{position:relative;overflow:visible;z-index:2;margin-bottom:0}
+#teacher .head .hair{z-index:1}
+#teacher .body-torso{margin:0 auto;position:relative;z-index:2}
+#teacher .body-wrapper{position:relative;display:flex;flex-direction:column;align-items:center}
+#teacher .arms{position:absolute;top:0;left:50%;transform:translateX(-50%);width:100%;height:0;z-index:4;pointer-events:none}
+#teacher .arm{position:absolute}
+
+/* ===== 小萝莉模式 ===== */
+#teacher.loli{top:30%}
+#teacher.loli .head{width:clamp(48px,5.5vw,76px);height:clamp(46px,5.2vw,72px);background:#ffdbb5;border-radius:50% 50% 45% 45%}
+#teacher.loli .head .hair{position:absolute;top:-8px;left:-6px;right:-6px;height:110%;background:linear-gradient(180deg,#4a3728 0%,#5c4433 100%);border-radius:50% 50% 45% 45%}
+#teacher.loli .head .hair::before{content:'';position:absolute;top:0;left:10%;width:80%;height:30%;background:#5c4433;border-radius:0 0 50% 50%}
+#teacher.loli .head .eye{width:12px;height:14px;background:#222;border-radius:50%;position:absolute;top:38%;z-index:3}
+#teacher.loli .head .eye.left{left:22%}
+#teacher.loli .head .eye.right{right:22%}
+#teacher.loli .head .eye::after{content:'';position:absolute;top:2px;left:2px;width:5px;height:5px;background:#fff;border-radius:50%}
+#teacher.loli .head .mouth{width:10px;height:6px;border:2px solid #e8877a;border-top:transparent;border-left:transparent;border-right:transparent;border-radius:0 0 50% 50%;position:absolute;bottom:22%;left:50%;transform:translateX(-50%);z-index:3}
+#teacher.loli .head .blush{width:8px;height:5px;background:rgba(255,150,150,0.5);border-radius:50%;position:absolute;top:50%;z-index:3}
+#teacher.loli .head .blush.left{left:14%}
+#teacher.loli .head .blush.right{right:14%}
+#teacher.loli .body-torso{width:clamp(52px,5.5vw,74px);height:clamp(48px,5vw,68px);background:linear-gradient(180deg,#fff 0%,#f0f0f0 100%);border-radius:12px 12px 4px 4px}
+#teacher.loli .body-torso .collar{width:70%;height:30%;background:linear-gradient(180deg,#2c5f8a,#1a4a6e);position:absolute;top:0;left:15%;clip-path:polygon(0 0,50% 100%,100% 0);border-radius:0}
+#teacher.loli .body-torso .collar::after{content:'';position:absolute;bottom:-6px;left:50%;transform:translateX(-50%);width:14px;height:8px;background:#c0392b;border-radius:2px 2px 0 0}
+#teacher.loli .skirt{display:block;width:clamp(58px,6vw,82px);height:clamp(22px,2.2vw,30px);background:linear-gradient(180deg,#2c5f8a,#1a4a6e);margin:0 auto;position:relative;z-index:3;border-radius:0 0 6px 6px;overflow:hidden}
+#teacher.loli .skirt::after{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:repeating-linear-gradient(90deg,transparent,transparent 6px,rgba(255,255,255,0.15) 6px,rgba(255,255,255,0.15) 8px)}
+#teacher.loli .crotch{display:none}
+#teacher.loli .arm{width:clamp(14px,1.5vw,20px);height:clamp(38px,4vw,52px);background:#ffdbb5;border-radius:8px;top:-2px}
+#teacher.loli .arm.left{left:-22px;transform:rotate(8deg)}
+#teacher.loli .arm.right{right:-22px;transform:rotate(-8deg)}
+#teacher.loli .arm::before{content:'';position:absolute;top:-2px;left:-4px;right:-4px;height:18px;background:#fff;border-radius:6px 6px 2px 2px;border:1px solid #ddd}
+#teacher.loli .legs{display:flex;gap:5px;position:relative;z-index:7;margin-left:8px}
+#teacher.loli .leg{width:clamp(14px,1.5vw,20px);height:clamp(60px,6vw,85px);background:#fff;border-radius:6px;position:relative}
+#teacher.loli .leg:first-child{transform:rotate(-15deg);transform-origin:top center}
+#teacher.loli .leg:last-child{transform:rotate(-10deg);transform-origin:top center}
+#teacher.loli .leg::after{content:'';position:absolute;bottom:-6px;left:-4px;width:24px;height:10px;background:#3a1a0a;border-radius:50% 50% 3px 3px;transform:rotate(-5deg)}
+#teacher.loli .old-head-style{display:none}
+#teacher.loli .loli-head-style{display:block}
+
+/* ===== 老男人模式 ===== */
+#teacher.oldman{top:32%}
+#teacher.oldman .head{width:clamp(44px,5vw,70px);height:clamp(42px,4.8vw,67px);background:#e8c9a0;border-radius:45% 45% 40% 40%}
+#teacher.oldman .head .hair{position:absolute;top:0;left:0;right:0;height:55%;background:linear-gradient(180deg,#333 0%,#444 100%);clip-path:polygon(0 0,25% 0,30% 55%,70% 55%,75% 0,100% 0,100% 60%,0 60%);border-radius:0}
+#teacher.oldman .head::before{content:'';position:absolute;top:8%;left:30%;width:40%;height:25%;background:rgba(255,255,200,0.5);border-radius:50%;z-index:2}
+#teacher.oldman .head::after{content:'';position:absolute;bottom:30%;left:48%;width:3px;height:8px;background:#222;z-index:3;transform:translateX(-50%) rotate(15deg)}
+#teacher.oldman .head .eye{width:8px;height:9px;background:#222;border-radius:50%;position:absolute;top:40%}
+#teacher.oldman .head .eye.left{left:25%;width:10px;height:10px}
+#teacher.oldman .head .eye.right{right:28%;width:5px;height:6px;top:42%}
+#teacher.oldman .head .mouth{width:18px;height:10px;border:2px solid #8B4513;background:#8B4513;border-radius:2px 2px 8px 8px;position:absolute;bottom:18%;left:48%;transform:translateX(-50%) rotate(-3deg);overflow:hidden}
+#teacher.oldman .head .mouth::after{content:'';position:absolute;top:-2px;left:2px;width:5px;height:4px;background:#ffeaa7;border-radius:1px;box-shadow:7px 0 0 #ffeaa7}
+#teacher.oldman .body-torso{width:clamp(50px,5vw,70px);height:clamp(55px,5.5vw,75px);background:linear-gradient(180deg,#6B8E23 0%,#556B2F 100%);border-radius:30% 30% 0 0}
+#teacher.oldman .body-torso .collar{width:55%;height:18%;border-bottom:2px solid #ddd;border-left:2px solid #ddd;border-right:2px solid #ddd;border-radius:0 0 4px 4px;margin:0 auto;position:absolute;top:2px;left:50%;transform:translateX(-50%);background:none;clip-path:none}
+#teacher.oldman .body-torso .collar::after{display:none}
+#teacher.oldman .body-torso::after{content:'';position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:30%;height:20%;background:rgba(100,100,100,0.3);border-radius:50%}
+#teacher.oldman .skirt{display:none}
+#teacher.oldman .crotch{display:block;width:clamp(50px,5vw,70px);height:clamp(10px,1vw,14px);background:#4a3a2a;margin:0 auto;position:relative;border-radius:0 0 4px 4px}
+#teacher.oldman .arm{width:clamp(18px,2vw,26px);height:clamp(44px,4.5vw,60px);background:#6B8E23;border-radius:10px;top:-2px}
+#teacher.oldman .arm.left{left:-28px;transform:rotate(12deg)}
+#teacher.oldman .arm.right{right:-28px;transform:rotate(-12deg)}
+#teacher.oldman .arm::before{display:none}
+#teacher.oldman .arm.left::after{content:'';position:absolute;top:-2px;left:50%;width:8px;height:6px;background:#333;border-radius:50%;transform:translateX(-50%)}
+#teacher.oldman .arm.right::after{content:'';position:absolute;top:-2px;left:50%;width:8px;height:6px;background:#333;border-radius:50%;transform:translateX(-50%)}
+#teacher.oldman .legs{display:flex;gap:6px;position:relative;z-index:7;margin-left:10px}
+#teacher.oldman .leg{width:clamp(16px,1.8vw,24px);height:clamp(70px,7vw,100px);background:#4a3a2a;border-radius:6px;position:relative}
+#teacher.oldman .leg:first-child{transform:rotate(-15deg);transform-origin:top center}
+#teacher.oldman .leg:last-child{transform:rotate(-10deg);transform-origin:top center}
+#teacher.oldman .leg::after{content:'';position:absolute;bottom:-8px;left:-6px;width:28px;height:12px;background:#3a2a1a;border-radius:50%;transform:rotate(-5deg)}
+#teacher.oldman .old-head-style{display:block}
+#teacher.oldman .loli-head-style{display:none}
 
 /* 学生桌子 */
 #classroom .student-desk{position:absolute;bottom:8%;left:50%;transform:translateX(-50%);width:clamp(260px,28vw,420px);height:clamp(60px,6vw,80px);background:linear-gradient(180deg,#d4a574 0%,#b8895a 100%);border-radius:6px;box-shadow:0 4px 20px rgba(0,0,0,0.25);z-index:10}
@@ -95,11 +131,16 @@ body{font-family:'Noto Sans SC',sans-serif;overflow:hidden;user-select:none;back
 #name-box p{color:#888;font-size:14px;margin-bottom:24px}
 #name-input{width:260px;padding:14px 20px;font-size:20px;border:2px solid #ddd;border-radius:12px;text-align:center;outline:none;transition:all 0.3s;font-family:'Noto Sans SC',sans-serif}
 #name-input:focus{border-color:#3a5a8c;box-shadow:0 0 15px rgba(58,90,140,0.2)}
+/* 老师形象选择 */
+#skin-selector{display:flex;gap:16px;justify-content:center;margin:16px 0}
+.skin-option{padding:10px 24px;border:2px solid #ddd;border-radius:25px;cursor:pointer;font-size:15px;transition:all 0.3s;font-family:'Noto Sans SC',sans-serif;background:#f9f9f9;color:#666}
+.skin-option:hover{border-color:#3a5a8c;color:#3a5a8c}
+.skin-option.selected{border-color:#3a5a8c;background:#3a5a8c;color:#fff;box-shadow:0 4px 15px rgba(58,90,140,0.3)}
 #name-btn{margin-top:18px;padding:14px 48px;font-size:18px;background:linear-gradient(135deg,#3a5a8c,#2c4a7c);color:#fff;border:none;border-radius:30px;cursor:pointer;letter-spacing:2px;transition:all 0.3s;font-family:'Noto Sans SC',sans-serif}
 #name-btn:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(58,90,140,0.4)}
 
 /* 对话框 - 放在老师头顶 */
-#dialog{position:absolute;top:18%;left:calc(50% + 6vw);transform:translateX(-50%);z-index:50;pointer-events:none;transition:all 0.4s ease}
+#dialog{position:absolute;top:14%;right:10%;z-index:50;pointer-events:none;transition:all 0.4s ease}
 #dialog-bubble{background:rgba(255,255,255,0.95);border-radius:16px;padding:18px 26px;max-width:380px;box-shadow:0 8px 30px rgba(0,0,0,0.25);position:relative;font-size:16px;color:#333;line-height:1.7;text-align:center;min-width:160px}
 #dialog-bubble::after{content:'';position:absolute;bottom:-14px;left:50%;transform:translateX(-50%);width:0;height:0;border-left:14px solid transparent;border-right:14px solid transparent;border-top:16px solid rgba(255,255,255,0.95)}
 #dialog-name{font-weight:700;color:#c0392b;margin-bottom:4px;font-size:13px}
@@ -170,7 +211,7 @@ body{font-family:'Noto Sans SC',sans-serif;overflow:hidden;user-select:none;back
 #round2-submit-btn:hover{transform:translateY(-2px);box-shadow:0 4px 15px rgba(58,90,140,0.4)}
 
 @media (max-width:600px){
-  #dialog{top:12%;left:calc(50% + 10vw)}
+  #dialog{top:8%;right:4%}
   #dialog-bubble{max-width:65vw;font-size:14px;padding:14px 18px}
   #dialog-text{font-size:14px}
   .choice-btn{padding:12px 22px;font-size:14px}
@@ -205,21 +246,32 @@ body{font-family:'Noto Sans SC',sans-serif;overflow:hidden;user-select:none;back
         <div class="leg"></div>
       </div>
     </div>
-    <div id="teacher">
+    <div id="teacher" class="loli">
       <div class="head">
         <div class="hair"></div>
+        <div class="loli-head-style">
+          <div class="pig1"></div>
+          <div class="pig2"></div>
+        </div>
+        <div class="old-head-style"></div>
         <div class="eye left"></div>
         <div class="eye right"></div>
+        <div class="blush left"></div>
+        <div class="blush right"></div>
         <div class="mouth"></div>
       </div>
-      <div class="arms">
-        <div class="arm left"></div>
-        <div class="arm right"></div>
-      </div>
-      <div class="body-torso"><div class="collar"></div></div>
-      <div class="legs">
-        <div class="leg"></div>
-        <div class="leg"></div>
+      <div class="body-wrapper">
+        <div class="arms">
+          <div class="arm left"></div>
+          <div class="arm right"></div>
+        </div>
+        <div class="body-torso"><div class="collar"></div></div>
+        <div class="skirt"></div>
+        <div class="crotch"></div>
+        <div class="legs">
+          <div class="leg"></div>
+          <div class="leg"></div>
+        </div>
       </div>
     </div>
     <div class="student-desk">
@@ -240,9 +292,13 @@ body{font-family:'Noto Sans SC',sans-serif;overflow:hidden;user-select:none;back
   <div id="name-overlay">
     <div id="name-box">
       <h2>平时成绩保卫战</h2>
-      <p>请输入你的名字开始挑战</p>
+      <p>请输入你的名字和老师名字开始挑战</p>
       <input type="text" id="name-input" placeholder="输入你的名字" maxlength="10">
-      <br>
+      <input type="text" id="teacher-name-input" placeholder="输入老师的名字" maxlength="10" style="width:260px;padding:14px 20px;font-size:20px;border:2px solid #ddd;border-radius:12px;text-align:center;outline:none;transition:all 0.3s;font-family:'Noto Sans SC',sans-serif;margin-top:12px" onfocus="this.style.borderColor='#3a5a8c';this.style.boxShadow='0 0 15px rgba(58,90,140,0.2)'" onblur="this.style.borderColor='#ddd';this.style.boxShadow='none'">
+      <div id="skin-selector">
+        <div class="skin-option selected" data-skin="loli" onclick="selectSkin('loli')">小萝莉</div>
+        <div class="skin-option" data-skin="oldman" onclick="selectSkin('oldman')">老男人</div>
+      </div>
       <button id="name-btn" onclick="startGame()">开始挑战</button>
     </div>
   </div>
@@ -272,6 +328,8 @@ body{font-family:'Noto Sans SC',sans-serif;overflow:hidden;user-select:none;back
 
   <!-- 第二轮提问选项 -->
   <div id="choices-round2" class="hidden">
+    <button class="choice-btn danger" id="choice-word-forgot" onclick="chooseWordForgot()">我忘了</button>
+    <button class="choice-btn" id="choice-word-silent" onclick="chooseWordSilent()">沉默...</button>
     <div id="round2-input-area">
       <input type="text" id="round2-input-field" placeholder="输入你的回答...">
       <button id="round2-submit-btn" onclick="checkWord()">提交</button>
@@ -335,10 +393,86 @@ const TEACHER_QUOTES = [
   '习惯决定命运。',
   '语文是一门让人聪明起来的学科',
   '在老师的指导下用正确的方法积极、主动地学习，做建构者。',
-  '多实践操练+反思总结'
+  '多实践操练+反思总结',
+  '听懂了？明白了？哎！',
+  '清楚？明白？',
+  '这本残疾证，我随身带着的。',
+  '什么是残，重病致残啊。',
+  '我这个人啊很注重尊师之道的，那你看到我必须要跟我打招呼的，说一句张老师好。但我不一定会给你回应因为我可能在想别的事情，或者没看到，大人每天要忙很多事情的，啊所以请你见谅。你毕竟是我的学生，我是你的老师。你平时班级里怎么叫我我管不着，只是不要说“张文你个王八蛋”就可以了。',
+  '我祖上是南京大屠杀的幸存者，所以我也算是半个南京人。',
+  '聪明有什么用，能进向明中学的哪个不聪明？大家都是吃优质蛋白质长大的。',
+  '我算什么东西，我算什么东西？',
+  '装傻是聪明的表现。',
+  '哑人带哑表，哑人背哑包。',
+  '这个是我的知识产权，我用来吃饭的东西，怎么好随便给你们？',
+  '这个世界上这个地球上没有第二个人有了。',
+  '你这衣服上的图案是什么啊？哦原来是马里奥，看来我落伍了。',
+  '你固然是个好人。',
+  'lcr打羽毛球很厉害，他在羽毛球方面可以做我的老师，但是他语文方面不一定有我厉害，我可以在语文方面做lcr的老师。',
+  '很香的老虎。',
+  '这个羽毛球馆不要太舒服噢，打打羽毛球吹吹空调咯，男生单打女生单打，最舒服的还是男女混合双打，啊一边打羽毛球么一遍谈情说爱啊，非常的罗曼蒂克。',
+  '这种搞艺术的人，他们都情感太丰富了。',
+  '之前跟我一个大学的朋友出去，他跟我说一个二八什么二八妙龄对你们自己回家查查看这里二八是一个乘法，不是28岁啊，他觉得28岁已经是老菜皮了，当然我不这么觉得啊，我觉得有的女人50几岁了也很好看。他的这种想法肯定是不对的啊，所以我也没有怎么跟他说，哦你不能这样说哦，你这样说回家你妈要打你的。',
+  '听说你们中午用这个电脑看片。',
+  '能都闭嘴吗！？',
+  '你们以为这是菜市场吗？',
+  '语文学习群这地方不是让你投票表决的！',
+  '来学习，至少要做合格的算盘珠子，而不是动不动拍脑袋发表所谓的高见！',
+  '你们也听周杰伦啊？这是我们那个年代听的歌。',
+  '电教委员？我要写字你给我弄到哪里去了？',
+  'gkc也是很可爱的。',
+  'just so so 了。',
+  '正式铃打了吗？',
+  '还没有FB，BBBBB。',
+  '混账东西！！！',
+  '嘿嘿，课代表，记他名字，扣他一分，再预扣他一分，明天不来找我，这一分也扣掉了。',
+  '诸如此类的东西。',
+  '对不起，校本乡土中国部分的答案忘记发了，明天发。',
+  '你听话听音啊。',
+  '知人论事。',
+  '顺水行船看菜吃饭。',
+  '我今天有优惠给你打折扣0.5分，明天再这样我直接扣你1分。',
+  '我不满意',
+  '病急乱投医。',
+  '我跟你们万老师交流过，就是长得很旺的那个老师。',
+  '我了解这个老师，很聪明也很稳，很适合当化学老师。',
+  'zz有一种“丧丧”的魅力。',
+  '你要骂就骂苏轼，他怎么写了这样一个字。',
+  '闭嘴！',
+  '五班的语文好和你们有什么关系！？',
+  'gkc倒也有像厨师的味道，将来会做个厨师。',
+  'lcr不错，lcr南北方综合。',
+  '那种乱七八糟乱伦的事情。',
+  '所以据说春天是600号人最多的时候。',
+  '累累是多咯。',
+  '蕾蕾是谁啊？',
+  '为什么我说蕾蕾你们要笑啊？',
+  '英语老师叫什么啊？哦，张蕾。',
+  '你们为什么要叫她蕾蕾啊？',
+  '有个成语，我就不说了。',
+  '有种欲望。',
+  '现在的gkc还没有进化好，女孩子千万不要去找他。',
+  'gkc的脸有表演意味，可以去当演员。',
+  '我蛮喜欢gkc的，他很有潜力。',
+  '我很喜欢gkc，我要送给gkc一支笔和一个喇叭。',
+  '人不可貌相，zz。zz也很有潜力，没想到zz还有数理化强大思维。',
+  '我感觉这个吉祥物像某人，但说出来不太好。',
+  '连日出日落都搞不清楚的你开玩笑一样的ljb。',
+  '已经混账到如此地步了吗！？',
+  '我要晕过去了。',
+  '呵呵。',
+  'gkc要是未来谈对象了，天天跟她谈足球。',
+  'gkc是个很有意思的男孩子，未来找到的女孩子也肯定很有意思。',
+  '我觉得wjy和gkc不一定有共同语言。',
+  '我现在对wjy不太满意。',
+  '我自从知道wjy是踢足球的我就很看重她，但gkc未必。',
+  '狗啃屎。',
+  '吓死宝宝了。'
 ];
 
 let playerName = '';
+let teacherName = 'sanxiao';
+let teacherSkin = 'loli';
 let score = 100;
 let gameActive = false;
 let currentRound = 0;     // 0=未开始 1=背诵 2=字词解释1 3=字词解释2 4=字词解释3 ...
@@ -346,15 +480,53 @@ let wordQuestionIndex = 0; // 当前字词解释的索引
 let quoteIndex = 0;        // 语录轰炸索引
 let selectedQuotes = [];   // 随机选出的10句语录
 
+function selectSkin(skin) {
+  teacherSkin = skin;
+  document.querySelectorAll('.skin-option').forEach(opt => opt.classList.remove('selected'));
+  document.querySelector(`.skin-option[data-skin="${skin}"]`).classList.add('selected');
+}
+
+function applyTeacherSkin(skin) {
+  const teacher = document.getElementById('teacher');
+  teacher.className = skin;
+}
+
 function startGame() {
   const input = document.getElementById('name-input');
+  const teacherInput = document.getElementById('teacher-name-input');
   playerName = input.value.trim();
+  const tName = teacherInput.value.trim();
   if (!playerName) {
     input.focus();
     input.style.borderColor = '#c0392b';
     setTimeout(() => input.style.borderColor = '#ddd', 1000);
     return;
   }
+  teacherName = tName || 'sanxiao';
+  applyTeacherSkin(teacherSkin);
+  
+  // 特殊彩蛋：学生名为"莫锦怀"
+  if (playerName === '莫锦怀') {
+    document.getElementById('name-overlay').classList.add('hidden');
+    document.getElementById('health-bar-container').classList.add('show');
+    updateHealthBar();
+    setTimeout(() => {
+      showDialog(teacherName, '你是我的师傅！');
+      setTimeout(() => {
+        const overlay = document.getElementById('result-overlay');
+        const box = document.getElementById('result-box');
+        box.className = 'success';
+        document.getElementById('result-title').textContent = '游戏结束';
+        document.getElementById('result-score').textContent = '100分';
+        document.getElementById('result-msg').textContent = '';
+        overlay.classList.add('show');
+        hideDialog();
+        document.getElementById('health-bar-container').classList.remove('show');
+      }, 2500);
+    }, 500);
+    return;
+  }
+  
   currentRound = 1;
   wordQuestionIndex = 0;
   gameActive = true;
@@ -364,9 +536,9 @@ function startGame() {
   document.getElementById('text-input-field').placeholder = '输入课文内容...';
 
   setTimeout(() => {
-    showDialog('sanxiao', `${playerName}，来背书。`);
+    showDialog(teacherName, `${playerName}，来背书。`);
     setTimeout(() => {
-      showDialog('sanxiao', '把《阿房宫赋》背一遍。');
+      showDialog(teacherName, '把《阿房宫赋》背一遍。');
       setTimeout(() => showChoices(), 1200);
     }, 2000);
   }, 500);
@@ -421,7 +593,7 @@ function playFailDialogues(callback) {
   function nextLine() {
     if (step < dialogues.length) {
       deductScore(3);
-      showDialog('sanxiao', dialogues[step]);
+      showDialog(teacherName, dialogues[step]);
       step++;
       setTimeout(nextLine, 2000);
     } else setTimeout(callback, 1500);
@@ -459,7 +631,7 @@ function checkRecite() {
   if (currentRound === 1) {
     const ni = input.replace(/\s+/g, ''), ne = EXPECTED_TEXT.replace(/\s+/g, '');
     if (ni === ne) {
-      showDialog('sanxiao', `很好！${playerName}，背得非常熟练！`);
+      showDialog(teacherName, `很好！${playerName}，背得非常熟练！`);
       spawnParticles();
       setTimeout(() => startWordRound(0), 3000);
     } else {
@@ -481,9 +653,9 @@ function startWordRound(idx) {
   document.getElementById('round2-input-field').value = '';
 
   setTimeout(() => {
-    showDialog('sanxiao', idx === 0 ? '他涂黑，看清楚了。' : '好，继续看黑板。');
+    showDialog(teacherName, idx === 0 ? '他涂黑，看清楚了。' : '好，继续看黑板。');
     setTimeout(() => {
-      showDialog('sanxiao', `${playerName}，"${q.word}"是什么意思？`);
+      showDialog(teacherName, `${playerName}，"${q.word}"是什么意思？`);
       showWordChoices();
       document.getElementById('round2-input-field').focus();
     }, 2000);
@@ -508,11 +680,11 @@ function checkWord() {
   const isCorrect = (input === q.answer);
 
   if (isCorrect) {
-    showDialog('sanxiao', `不错！${playerName}，${q.correctMsg}`);
+    showDialog(teacherName, `不错！${playerName}，${q.correctMsg}`);
     spawnParticles();
   } else {
     deductScore(3);
-    showDialog('sanxiao', `${q.wrongMsg} 扣3分！`);
+    showDialog(teacherName, `${q.wrongMsg} 扣3分！`);
   }
 
   // 进入下一题或结束
@@ -522,6 +694,40 @@ function checkWord() {
       startWordRound(wordQuestionIndex + 1);
     } else {
       // 所有字词解释完成，进入语录轰炸
+      startQuoteStorm();
+    }
+  }, 2500);
+}
+
+function chooseWordForgot() {
+  if (!gameActive) return;
+  gameActive = false;
+  hideWordChoices(); hideDialog();
+  const q = WORD_QUESTIONS[wordQuestionIndex];
+  deductScore(3);
+  showDialog(teacherName, `${q.wrongMsg} 扣3分！`);
+  setTimeout(() => {
+    if (score <= 0) { showResult('fail', '平时成绩扣光了！'); return; }
+    if (wordQuestionIndex < WORD_QUESTIONS.length - 1) {
+      startWordRound(wordQuestionIndex + 1);
+    } else {
+      startQuoteStorm();
+    }
+  }, 2500);
+}
+
+function chooseWordSilent() {
+  if (!gameActive) return;
+  gameActive = false;
+  hideWordChoices(); hideDialog();
+  const q = WORD_QUESTIONS[wordQuestionIndex];
+  deductScore(3);
+  showDialog(teacherName, `${q.wrongMsg} 扣3分！`);
+  setTimeout(() => {
+    if (score <= 0) { showResult('fail', '平时成绩扣光了！'); return; }
+    if (wordQuestionIndex < WORD_QUESTIONS.length - 1) {
+      startWordRound(wordQuestionIndex + 1);
+    } else {
       startQuoteStorm();
     }
   }, 2500);
@@ -539,7 +745,7 @@ function shuffleArray(arr) {
 
 function startQuoteStorm() {
   quoteIndex = 0;
-  selectedQuotes = shuffleArray(TEACHER_QUOTES).slice(0, 10);
+  selectedQuotes = shuffleArray(TEACHER_QUOTES).slice(0, 15);
   gameActive = true;
   hideDialog(); hideChoices(); hideWordChoices();
   document.getElementById('excel-overlay').classList.remove('show');
@@ -547,9 +753,9 @@ function startQuoteStorm() {
   document.querySelector('.blackboard-text').textContent = '语录轰炸';
   
   setTimeout(() => {
-    showDialog('sanxiao', '哼，字词解释完了是吧？');
+    showDialog(teacherName, '哼，字词解释完了是吧？');
     setTimeout(() => {
-      showDialog('sanxiao', '别以为这就完了，我话还没说完呢。');
+      showDialog(teacherName, '别以为这就完了，我话还没说完呢。');
       setTimeout(() => showNextQuote(), 1500);
     }, 2000);
   }, 600);
@@ -563,7 +769,7 @@ function showNextQuote() {
   }
   
   const quote = selectedQuotes[quoteIndex];
-  showDialog('sanxiao', quote);
+  showDialog(teacherName, quote);
   quoteIndex++;
   setTimeout(() => showNextQuote(), 1800);
 }
@@ -573,11 +779,11 @@ function startFinalDeduction() {
   document.querySelector('.blackboard-text').textContent = '扣分时间';
   
   setTimeout(() => {
-    showDialog('sanxiao', `${playerName}，不要扯别的，只许州官放火不许百姓点灯。扣三分！`);
+    showDialog(teacherName, `${playerName}，不要扯别的，只许州官放火不许百姓点灯。扣三分！`);
     deductScore(3);
     setTimeout(() => {
       if (score <= 0) { showFinalResult(); return; }
-      showDialog('sanxiao', `${playerName}，不行啦！扣三分！`);
+      showDialog(teacherName, `${playerName}，不行啦！扣三分！`);
       deductScore(3);
       setTimeout(() => {
         showFinalResult();
@@ -634,6 +840,9 @@ function showResult(type, msg) {
 
 function restartGame() {
   score = 100; gameActive = false; currentRound = 0; wordQuestionIndex = 0; quoteIndex = 0; selectedQuotes = [];
+  teacherSkin = 'loli';
+  selectSkin('loli');
+  applyTeacherSkin('loli');
   updateHealthBar();
   document.getElementById('result-overlay').classList.remove('show');
   document.getElementById('text-input-field').value = '';
@@ -644,10 +853,12 @@ function restartGame() {
   hideDialog(); hideChoices(); hideWordChoices();
   document.getElementById('name-overlay').classList.remove('hidden');
   document.getElementById('name-input').value = '';
+  document.getElementById('teacher-name-input').value = '';
   document.getElementById('health-bar-container').classList.remove('show');
 }
 
 document.getElementById('name-input').addEventListener('keydown', e => { if(e.key==='Enter')startGame(); });
+document.getElementById('teacher-name-input').addEventListener('keydown', e => { if(e.key==='Enter')startGame(); });
 document.getElementById('text-input-field').addEventListener('keydown', e => { if(e.key==='Enter')checkRecite(); });
 document.getElementById('round2-input-field').addEventListener('keydown', e => { if(e.key==='Enter')checkWord(); });
 </script>
