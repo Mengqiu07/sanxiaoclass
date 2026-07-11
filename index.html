@@ -506,7 +506,13 @@ function startGame() {
     setTimeout(() => input.style.borderColor = '#ddd', 1000);
     return;
   }
-  teacherName = tName || 'sanxiao';
+  if (!tName) {
+    teacherInput.focus();
+    teacherInput.style.borderColor = '#c0392b';
+    setTimeout(() => teacherInput.style.borderColor = '#ddd', 1000);
+    return;
+  }
+  teacherName = tName;
   applyTeacherSkin(teacherSkin);
   
   // 特殊彩蛋：学生名为"莫锦怀"
