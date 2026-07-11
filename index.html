@@ -154,6 +154,8 @@ body{font-family:'Noto Sans SC',sans-serif;overflow:hidden;user-select:none;back
 .choice-btn:hover{background:#3a5a8c;color:#fff;transform:translateY(-3px);box-shadow:0 6px 20px rgba(58,90,140,0.3)}
 .choice-btn.danger{border-color:#c0392b;color:#c0392b}
 .choice-btn.danger:hover{background:#c0392b;color:#fff;box-shadow:0 6px 20px rgba(192,57,43,0.3)}
+.choice-btn.cheat{border-color:#f39c12;color:#f39c12;font-size:13px;padding:12px 24px}
+.choice-btn.cheat:hover{background:#f39c12;color:#fff;box-shadow:0 6px 20px rgba(243,156,18,0.3)}
 
 /* 文本输入框 */
 #text-input-area{display:none;align-items:center;gap:12px;pointer-events:auto}
@@ -320,6 +322,7 @@ body{font-family:'Noto Sans SC',sans-serif;overflow:hidden;user-select:none;back
   <div id="choices" class="hidden">
     <button class="choice-btn danger" id="choice-forgot" onclick="chooseForgot()">我忘了</button>
     <button class="choice-btn" id="choice-silent" onclick="chooseSilent()">沉默...</button>
+    <button class="choice-btn cheat" id="choice-cheat" onclick="chooseCheat()">作弊</button>
     <div id="text-input-area">
       <input type="text" id="text-input-field" placeholder="输入课文内容...">
       <button id="text-submit-btn" onclick="checkRecite()">提交</button>
@@ -330,6 +333,7 @@ body{font-family:'Noto Sans SC',sans-serif;overflow:hidden;user-select:none;back
   <div id="choices-round2" class="hidden">
     <button class="choice-btn danger" id="choice-word-forgot" onclick="chooseWordForgot()">我忘了</button>
     <button class="choice-btn" id="choice-word-silent" onclick="chooseWordSilent()">沉默...</button>
+    <button class="choice-btn cheat" id="choice-word-cheat" onclick="chooseWordCheat()">作弊</button>
     <div id="round2-input-area">
       <input type="text" id="round2-input-field" placeholder="输入你的回答...">
       <button id="round2-submit-btn" onclick="checkWord()">提交</button>
@@ -611,6 +615,75 @@ function chooseSilent() {
   if (!gameActive) return;
   gameActive = false;
   playFailDialogues(() => { if(score<=0){showResult('fail','平时成绩扣光了！');return;} startWordRound(0); });
+}
+
+// ===== 作弊逻辑 =====
+function chooseCheat() {
+  if (!gameActive) return;
+  gameActive = false;
+  hideChoices();
+  if (Math.random() < 0.5) {
+    // 被发现
+    let step = 0;
+    const lines = ['搞清楚你要干什么？', '都什么时候了还在这里看！', '扣10分！'];
+    function nextLine() {
+      if (step < lines.length) {
+        showDialog(teacherName, lines[step]);
+        step++;
+        if (step === 3) { deductScore(10); }
+        setTimeout(nextLine, 2000);
+      } else {
+        if (score <= 0) { showResult('fail', '作弊被抓，平时成绩扣光了！'); return; }
+        startWordRound(0);
+      }
+    }
+    nextLine();
+  } else {
+    // 没被发现，顺利通过
+    showDialog(teacherName, `很好！${playerName}，背得非常熟练！`);
+    spawnParticles();
+    setTimeout(() => startWordRound(0), 3000);
+  }
+}
+
+function chooseWordCheat() {
+  if (!gameActive) return;
+  gameActive = false;
+  hideWordChoices();
+  if (Math.random() < 0.5) {
+    // 被发现
+    let step = 0;
+    const lines = ['搞清楚你要干什么？', '都什么时候了还在这里看！', '扣10分！'];
+    function nextLine() {
+      if (step < lines.length) {
+        showDialog(teacherName, lines[step]);
+        step++;
+        if (step === 3) { deductScore(10); }
+        setTimeout(nextLine, 2000);
+      } else {
+        if (score <= 0) { showResult('fail', '作弊被抓，平时成绩扣光了！'); return; }
+        if (wordQuestionIndex < WORD_QUESTIONS.length - 1) {
+          startWordRound(wordQuestionIndex + 1);
+        } else {
+          startQuoteStorm();
+        }
+      }
+    }
+    nextLine();
+  } else {
+    // 没被发现，顺利通过
+    const q = WORD_QUESTIONS[wordQuestionIndex];
+    showDialog(teacherName, `不错！${playerName}，${q.correctMsg}`);
+    spawnParticles();
+    setTimeout(() => {
+      if (score <= 0) { showResult('fail', '平时成绩扣光了！'); return; }
+      if (wordQuestionIndex < WORD_QUESTIONS.length - 1) {
+        startWordRound(wordQuestionIndex + 1);
+      } else {
+        startQuoteStorm();
+      }
+    }, 2500);
+  }
 }
 
 // ===== 第一轮：背诵提交 =====
