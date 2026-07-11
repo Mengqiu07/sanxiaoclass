@@ -622,15 +622,15 @@ function chooseCheat() {
   if (!gameActive) return;
   gameActive = false;
   hideChoices();
-  if (Math.random() < 0.5) {
+  if (Math.random() < 0.8) {
     // 被发现
     let step = 0;
-    const lines = ['搞清楚你要干什么？', '都什么时候了还在这里看！', '扣10分！'];
+    const lines = ['搞清楚你要干什么？', '都什么时候了还在这里看！', '扣20分！'];
     function nextLine() {
       if (step < lines.length) {
         showDialog(teacherName, lines[step]);
         step++;
-        if (step === 3) { deductScore(10); }
+        if (step === 3) { deductScore(20); }
         setTimeout(nextLine, 2000);
       } else {
         if (score <= 0) { showResult('fail', '作弊被抓，平时成绩扣光了！'); return; }
